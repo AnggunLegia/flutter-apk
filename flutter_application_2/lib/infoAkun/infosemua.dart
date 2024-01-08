@@ -1,112 +1,34 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/infoAkun/infosemua.dart';
-import 'package:flutter_application_2/pengiriman/alamat.dart';
-import 'package:flutter_application_2/pengiriman/navAlamat.dart';
+import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../home/home.dart';
-import '../merch_page/merch_page.dart';
+import '../pengiriman/navAlamat.dart';
 
-class pageProfile extends StatefulWidget {
-  const pageProfile({super.key});
+class pageInfo extends StatefulWidget {
+  const pageInfo({super.key});
 
   @override
-  State<pageProfile> createState() => _pageProfileState();
+  State<pageInfo> createState() => _pageInfoState();
 }
 
-class _pageProfileState extends State<pageProfile> {
+class _pageInfoState extends State<pageInfo> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-          color: Colors.black,
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageMerch()));
-                    },
-                    icon: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageMerch()));
-                    },
-                    icon: Icon(
-                      Icons.library_books_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageHome()));
-                    },
-                    icon: Icon(
-                      Icons.home_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageMerch()));
-                    },
-                    icon: Icon(
-                      Icons.message_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 10,
-                ),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => pageProfile()));
-                    },
-                    icon: Icon(
-                      Icons.person_2_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-            ],
-          )),
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
+    return  Scaffold(
+       appBar: AppBar(
+       
         title: Row(
           children: [
             Container(
               child: Text(
-                "Profileaa",
+                "Infromasi Akun",
                 style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 25,
                     color: Color.fromRGBO(202, 31, 31, 1)),
               ),
-              margin: EdgeInsets.only(left: 90),
+              margin: EdgeInsets.only(left: 60),
             ),
           ],
         ),
@@ -115,14 +37,7 @@ class _pageProfileState extends State<pageProfile> {
       ),
       body: Column(
         children: [
-          Container(
-            height: 90,
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(bottom: 2),
-            decoration: BoxDecoration(
-              color: Colors.black,
-            ),
-          ),
+         
           Container(
             height: 90,
             width: MediaQuery.of(context).size.width,
@@ -142,7 +57,7 @@ class _pageProfileState extends State<pageProfile> {
                 ),
                 Padding(
                     padding: EdgeInsets.only(left: 10),
-                    child: Text("ALAMAT PENGIRIMAN",
+                    child: Text("Username",
                         style: GoogleFonts.roboto(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 20,
@@ -229,12 +144,7 @@ class _pageProfileState extends State<pageProfile> {
                 Padding(
                   padding: EdgeInsets.only(left: 72),
                   child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => pageInfo()));
-                      },
+                      onPressed: () {},
                       icon: Icon(
                         Icons.arrow_forward_ios_rounded,
                         size: 30,

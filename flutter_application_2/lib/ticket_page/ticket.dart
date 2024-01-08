@@ -1,15 +1,24 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class pageTicket extends StatefulWidget {
-  const pageTicket({super.key});
+  const pageTicket({Key? key}) : super(key: key);
 
   @override
   State<pageTicket> createState() => _pageTicketState();
 }
 
 class _pageTicketState extends State<pageTicket> {
+
+   late CollectionReference ticketCollection;
+
   @override
+  void initState(){
+    super.initState();
+    ticketCollection = FirebaseFirestore.instance.collection('konser');
+
+  }
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -36,16 +45,30 @@ class _pageTicketState extends State<pageTicket> {
           children: [
             Padding(
               padding: EdgeInsets.all(20),
-              child: GridView.builder(
+              child: FutureBuilder<QuerySnapshot>(
+                future: ticketCollection.get(),
+                builder: (context, snapshot){
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return CircularProgressIndicator();
+                  }
+                  else if( snapshot.hasError){
+                    return Text('error: ${snapshot.error}');
+                  }
+                  else{
+                    var ticketDocs = snapshot.data!.docs;
+
+                  return GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                       crossAxisSpacing: 15,
                       mainAxisSpacing: 15,
                       childAspectRatio: 0.7),
-                  itemCount: 10,
+                  itemCount:  ticketDocs.length,
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   itemBuilder: (BuildContext ctx, index) {
+                      var data = ticketDocs[index].data()
+                      as Map<String, dynamic>;
                     return GestureDetector(
                       child: Container(
                         width: 70,
@@ -65,16 +88,19 @@ class _pageTicketState extends State<pageTicket> {
                         child: Column(
                           children: [
                             Container(
-                              child: Image.asset(
-                                "assets/images/ticket.jpg",
-                                width: 140,
-                                height: 140,
-                              ),
+                               width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                      data['Asset']))
+                                ),
+                               
                               margin: EdgeInsets.only(top: 20, bottom: 10),
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 30),
-                              child: Text("Festival Musik",
+                              child: Text(data ['Tempat'],
                                   style: GoogleFonts.radioCanada(
                                       textStyle: Theme.of(context)
                                           .textTheme
@@ -85,12 +111,12 @@ class _pageTicketState extends State<pageTicket> {
                             ),
                             Padding(
                               padding: const EdgeInsets.only(right: 73),
-                              child: Text("IDR 200.000",
+                              child: Text("IDR ${data['Harga']}",
                                   style: GoogleFonts.radioCanada(
                                       textStyle: Theme.of(context)
                                           .textTheme
                                           .displayLarge,
-                                      fontSize: 10,
+                                      fontSize: 13,
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold)),
                             ),
@@ -98,7 +124,10 @@ class _pageTicketState extends State<pageTicket> {
                         ),
                       ),
                     );
-                  }),
+                  });
+                  }
+                }
+            )
             )
           ],
         )));

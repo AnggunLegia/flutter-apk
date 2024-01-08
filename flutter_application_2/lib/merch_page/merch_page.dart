@@ -1,15 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class pageMerch extends StatefulWidget {
-  const pageMerch({super.key});
+  const pageMerch({Key? key}) : super(key: key);
 
   @override
   State<pageMerch> createState() => _pageMerchState();
 }
 
 class _pageMerchState extends State<pageMerch> {
+  
+  late CollectionReference merchCollection;
+
   @override
+  
+  void initState(){
+    super.initState();
+    merchCollection = FirebaseFirestore.instance.collection('coba');
+
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -36,67 +47,88 @@ class _pageMerchState extends State<pageMerch> {
           children: [
             Padding(
               padding: EdgeInsets.all(20),
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      crossAxisSpacing: 15,
-                      mainAxisSpacing: 15,
-                      childAspectRatio: 0.7),
-                  itemCount: 10,
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemBuilder: (BuildContext ctx, index) {
-                    return GestureDetector(
-                      child: Container(
-                        width: 70,
-                        height: 90,
-                        decoration: BoxDecoration(
-                          border: Border.all(width: 2, color: Colors.black),
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(10.0),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black26,
-                                spreadRadius: 3,
-                                blurRadius: 2,
-                                offset: Offset(0, 4))
-                          ],
-                        ),
-                        child: Column(
-                          children: [
-                            Container(
-                              child: Image.asset(
-                                "assets/images/IWIWYJ.jpg",
+              child: FutureBuilder<QuerySnapshot>(
+                future: merchCollection.get(),
+                builder: (context, snapshot){
+                  if(snapshot.connectionState == ConnectionState.waiting){
+                    return CircularProgressIndicator();
+                  }
+                  else if( snapshot.hasError){
+                    return Text('error: ${snapshot.error}');
+                  }
+                  else{
+                    var merchDocs = snapshot.data!.docs;
+
+                  return GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 15,
+                        mainAxisSpacing: 15,
+                        childAspectRatio: 0.7),
+                    itemCount: merchDocs.length,
+                    physics: NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext ctx, index) {
+                      var data = merchDocs[index].data()
+                      as Map<String, dynamic>;
+                      return GestureDetector(
+                        child: Container(
+                          width: 70,
+                          height: 90,
+                          decoration: BoxDecoration(
+                            border: Border.all(width: 2, color: Colors.black),
+                            color: Colors.grey[400],
+                            borderRadius: BorderRadius.circular(10.0),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black26,
+                                  spreadRadius: 3,
+                                  blurRadius: 2,
+                                  offset: Offset(0, 4))
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(data['Asset']))
+                                ),
+                               
+                                margin: EdgeInsets.only(top: 20, bottom: 10),
                               ),
-                              margin: EdgeInsets.only(top: 20, bottom: 10),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 30),
-                              child: Text("IWIWYJ TEE",
-                                  style: GoogleFonts.radioCanada(
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge,
-                                      fontSize: 15,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 60),
-                              child: Text("IDR 200.000",
-                                  style: GoogleFonts.radioCanada(
-                                      textStyle: Theme.of(context)
-                                          .textTheme
-                                          .displayLarge,
-                                      fontSize: 10,
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.bold)),
-                            ),
-                          ],
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10, right: 10),
+                                child: Text(data ['Judul'],
+                                    style: GoogleFonts.radioCanada(
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge,
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 80),
+                                child: Text("IDR ${data['Menit']}",
+                                    style: GoogleFonts.radioCanada(
+                                        textStyle: Theme.of(context)
+                                            .textTheme
+                                            .displayLarge,
+                                        fontSize: 13,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
-                  }),
+                      );
+                    }); 
+                    }
+                }
+              ),
             )
           ],
         )));

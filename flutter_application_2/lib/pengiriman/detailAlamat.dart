@@ -52,7 +52,7 @@ class _pageDetailAlamatState extends State<pageDetailAlamat> {
     "kategori alamat": _kategorialmat.text,
     
   });
-   Navigator.push(context, MaterialPageRoute(builder: (_)=>pageProfile()));
+   Navigator.push(context, MaterialPageRoute(builder: (_)=>pageNavAlamat()));
     }catch (e) {
    
 
@@ -87,11 +87,13 @@ class _pageDetailAlamatState extends State<pageDetailAlamat> {
       appBar: AppBar(
         title:   Container(
              
-             child: Text("TAMBAH ALAMAT", style: GoogleFonts.candal(
-                  textStyle: Theme.of(context).textTheme.displayLarge,
-                            fontSize: 30, 
-                            color: Colors.black
-                ), ),
+             child: Text(
+            "UPDATE ALAMAT",
+            style: GoogleFonts.radioCanada(
+                textStyle: Theme.of(context).textTheme.displayLarge,
+                fontSize: 20,
+                color: Colors.black),
+          ),
            ),
            toolbarHeight: 60,
       ),
@@ -395,7 +397,7 @@ class _pageDetailAlamatState extends State<pageDetailAlamat> {
                               }, 
                          
                           child:
-                            Text("TAMBAH ALAMAT",
+                            Text("UPDATE ALAMAT",
                           style: TextStyle(fontSize: 20,
                           color: Colors.white),),  ),
                    ),

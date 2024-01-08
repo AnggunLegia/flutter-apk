@@ -4,6 +4,8 @@ import 'package:flutter_application_2/profile/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
+import 'navAlamat.dart';
+
 class pageAlamat extends StatefulWidget {
   const pageAlamat({super.key});
 
@@ -37,7 +39,7 @@ class _pageAlamatState extends State<pageAlamat> {
         "alamat lengkap": _alamatlengkap.text,
         "kategori alamat": _kategorialmat.text,
       });
-      Navigator.push(context, MaterialPageRoute(builder: (_) => pageProfile()));
+      Navigator.push(context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),

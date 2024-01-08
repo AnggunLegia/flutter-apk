@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/merch_page/merch_page.dart';
 import 'package:flutter_application_2/profile/profile.dart';
@@ -16,7 +17,8 @@ class pageHome extends StatefulWidget {
 }
 
 class _pageHomeState extends State<pageHome> {
-  int currentIndex = 2;
+  final _userStream =
+      FirebaseFirestore.instance.collection("upcoming").snapshots();
 
   @override
   Widget build(BuildContext context) {
@@ -251,7 +253,41 @@ class _pageHomeState extends State<pageHome> {
                     color: Colors.black),
               ),
               margin: EdgeInsets.only(top: 30, right: 180),
-            )
+            ),
+             StreamBuilder(
+                stream: _userStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var doc = snapshot.data!.docs;
+                    return ListView.builder(
+                        itemCount: doc.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          return InkWell(
+                             
+                            child:Column(
+                              children:[
+                              Container(
+                               width: 150,
+                                height: 150,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                     doc[index]['Asset']))
+                                ),
+                               
+                              margin: EdgeInsets.only(top: 20, bottom: 10),
+                            ),
+                              ]
+                            ) ,
+                             );
+
+                              }
+                              );
+                              }
+                              return CircularProgressIndicator();
+                              }
+                              )
           ],
         ),
       ),

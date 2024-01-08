@@ -30,7 +30,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                       fontSize: 25,
                       color: Color.fromRGBO(202, 31, 31, 1)),
                 ),
-                margin: EdgeInsets.only(left: 90),
+                margin: EdgeInsets.only(left: 20),
               ),
             ],
           ),
@@ -44,14 +44,20 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                 child: Container(
                   width: 350,
                   height: 100,
-                  margin: EdgeInsets.only(top: 20, bottom: 40),
-                  child: Text(
-                    "+ Tambah Alamat",
-                    style: TextStyle(color: Colors.black, fontSize: 30),
+                  margin: EdgeInsets.only(top: 20, bottom: 20),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 45, top: 25),
+                    child: Text(
+                      "+ Tambah Alamat",
+                      style: TextStyle(color: Colors.black, fontSize: 30),
+                    ),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(width: 3, color: Colors.black)),
+                      border: Border.all(width: 3, color: const Color.fromARGB(255, 80, 78, 78)),
+                      borderRadius: BorderRadius.circular(10)
+                      ),
+                      
                 ),
                 onTap: () {
                   Navigator.push(context,
@@ -92,7 +98,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                 children: [
                                   Container(
                                     margin: EdgeInsets.only(top: 20),
-                                    height: 250,
+                                    height: 200,
                                     width: 350,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
