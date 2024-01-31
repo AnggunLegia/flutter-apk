@@ -100,13 +100,13 @@ class _pageProfileState extends State<pageProfile> {
           children: [
             Container(
               child: Text(
-                "Profileaa",
+                "Profile",
                 style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 25,
                     color: Color.fromRGBO(202, 31, 31, 1)),
               ),
-              margin: EdgeInsets.only(left: 90),
+              margin: EdgeInsets.only(left: 130),
             ),
           ],
         ),
@@ -124,7 +124,7 @@ class _pageProfileState extends State<pageProfile> {
             ),
           ),
           Container(
-            height: 90,
+            height: 70,
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(bottom: 2),
             decoration: BoxDecoration(
@@ -136,7 +136,7 @@ class _pageProfileState extends State<pageProfile> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Icon(
                     Icons.location_on_outlined,
-                    size: 30,
+                    size: 20,
                     color: Color.fromRGBO(202, 31, 31, 1),
                   ),
                 ),
@@ -145,10 +145,10 @@ class _pageProfileState extends State<pageProfile> {
                     child: Text("ALAMAT PENGIRIMAN",
                         style: GoogleFonts.roboto(
                             textStyle: Theme.of(context).textTheme.displayLarge,
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Colors.white))),
                 Padding(
-                  padding: EdgeInsets.only(left: 43),
+                  padding: EdgeInsets.only(left: 98),
                   child: IconButton(
                       onPressed: () {
                         Navigator.push(
@@ -158,7 +158,7 @@ class _pageProfileState extends State<pageProfile> {
                       },
                       icon: Icon(
                         Icons.arrow_forward_ios_rounded,
-                        size: 30,
+                        size: 20,
                         color: Color.fromRGBO(202, 31, 31, 1),
                       )),
                 )
@@ -166,7 +166,7 @@ class _pageProfileState extends State<pageProfile> {
             ),
           ),
           Container(
-            height: 90,
+            height: 70,
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(bottom: 2),
             decoration: BoxDecoration(
@@ -178,7 +178,7 @@ class _pageProfileState extends State<pageProfile> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Icon(
                     Icons.wallet_outlined,
-                    size: 30,
+                    size: 20,
                     color: Color.fromRGBO(202, 31, 31, 1),
                   ),
                 ),
@@ -187,15 +187,15 @@ class _pageProfileState extends State<pageProfile> {
                     child: Text("CARA PEMBAYARAN",
                         style: GoogleFonts.roboto(
                             textStyle: Theme.of(context).textTheme.displayLarge,
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Colors.white))),
                 Padding(
-                  padding: EdgeInsets.only(left: 60),
+                  padding: EdgeInsets.only(left: 110),
                   child: IconButton(
                       onPressed: () {},
                       icon: Icon(
                         Icons.arrow_forward_ios_rounded,
-                        size: 30,
+                        size: 20,
                         color: Color.fromRGBO(202, 31, 31, 1),
                       )),
                 )
@@ -203,7 +203,7 @@ class _pageProfileState extends State<pageProfile> {
             ),
           ),
           Container(
-            height: 90,
+            height: 70,
             width: MediaQuery.of(context).size.width,
             margin: EdgeInsets.only(bottom: 2),
             decoration: BoxDecoration(
@@ -215,7 +215,7 @@ class _pageProfileState extends State<pageProfile> {
                   padding: const EdgeInsets.only(left: 10),
                   child: Icon(
                     Icons.info_outline,
-                    size: 30,
+                    size: 20,
                     color: Color.fromRGBO(202, 31, 31, 1),
                   ),
                 ),
@@ -224,10 +224,10 @@ class _pageProfileState extends State<pageProfile> {
                     child: Text("INFRORMASI AKUN",
                         style: GoogleFonts.roboto(
                             textStyle: Theme.of(context).textTheme.displayLarge,
-                            fontSize: 20,
+                            fontSize: 15,
                             color: Colors.white))),
                 Padding(
-                  padding: EdgeInsets.only(left: 72),
+                  padding: EdgeInsets.only(left: 120),
                   child: IconButton(
                       onPressed: () {
                         Navigator.push(
@@ -237,7 +237,7 @@ class _pageProfileState extends State<pageProfile> {
                       },
                       icon: Icon(
                         Icons.arrow_forward_ios_rounded,
-                        size: 30,
+                        size: 20,
                         color: Color.fromRGBO(202, 31, 31, 1),
                       )),
                 )

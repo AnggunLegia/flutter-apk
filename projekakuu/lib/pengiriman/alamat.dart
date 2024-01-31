@@ -39,7 +39,8 @@ class _pageAlamatState extends State<pageAlamat> {
         "alamat lengkap": _alamatlengkap.text,
         "kategori alamat": _kategorialmat.text,
       });
-      Navigator.push(context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
@@ -59,6 +60,7 @@ class _pageAlamatState extends State<pageAlamat> {
                 fontSize: 20,
                 color: Colors.black),
           ),
+          margin: EdgeInsets.only(left: 25),
         ),
         toolbarHeight: 60,
       ),
@@ -257,7 +259,7 @@ class _pageAlamatState extends State<pageAlamat> {
                     },
                     decoration: InputDecoration(
                       hintText: "Contoh: rumah no. xx, rt/rw 02/03",
-                      labelText: "almat Lengkap",
+                      labelText: "alamat Lengkap",
                       labelStyle: TextStyle(
                           fontSize: 20,
                           color: Colors.black,

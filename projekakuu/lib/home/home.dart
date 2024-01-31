@@ -252,9 +252,9 @@ class _pageHomeState extends State<pageHome> {
                     fontSize: 20,
                     color: Colors.black),
               ),
-              margin: EdgeInsets.only(top: 30, right: 180),
+              margin: EdgeInsets.only(top: 30, right: 180, bottom: 10),
             ),
-             StreamBuilder(
+            StreamBuilder(
                 stream: _userStream,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
@@ -264,30 +264,22 @@ class _pageHomeState extends State<pageHome> {
                         shrinkWrap: true,
                         itemBuilder: (context, index) {
                           return InkWell(
-                             
-                            child:Column(
-                              children:[
+                            child: Column(children: [
                               Container(
-                               width: 150,
-                                height: 150,
+                                width: 300,
+                                height: 100,
                                 decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                     doc[index]['Asset']))
-                                ),
-                               
-                              margin: EdgeInsets.only(top: 20, bottom: 10),
-                            ),
-                              ]
-                            ) ,
-                             );
-
-                              }
-                              );
-                              }
-                              return CircularProgressIndicator();
-                              }
-                              )
+                                    image: DecorationImage(
+                                        image:
+                                            NetworkImage(doc[index]['Asset']))),
+                                margin: EdgeInsets.only(bottom: 5),
+                              ),
+                            ]),
+                          );
+                        });
+                  }
+                  return CircularProgressIndicator();
+                })
           ],
         ),
       ),

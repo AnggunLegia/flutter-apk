@@ -27,7 +27,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                   "Alamat Pengiriman",
                   style: GoogleFonts.radioCanada(
                       textStyle: Theme.of(context).textTheme.displayLarge,
-                      fontSize: 25,
+                      fontSize: 20,
                       color: Color.fromRGBO(202, 31, 31, 1)),
                 ),
                 margin: EdgeInsets.only(left: 20),
@@ -42,22 +42,22 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
             children: [
               GestureDetector(
                 child: Container(
-                  width: 350,
+                  width: 320,
                   height: 100,
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Padding(
-                    padding: const EdgeInsets.only(left: 45, top: 25),
+                    padding: const EdgeInsets.only(left: 60, top: 25),
                     child: Text(
                       "+ Tambah Alamat",
-                      style: TextStyle(color: Colors.black, fontSize: 30),
+                      style: TextStyle(color: Colors.black, fontSize: 25),
                     ),
                   ),
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      border: Border.all(width: 3, color: const Color.fromARGB(255, 80, 78, 78)),
-                      borderRadius: BorderRadius.circular(10)
-                      ),
-                      
+                      border: Border.all(
+                          width: 3,
+                          color: const Color.fromARGB(255, 80, 78, 78)),
+                      borderRadius: BorderRadius.circular(10)),
                 ),
                 onTap: () {
                   Navigator.push(context,
@@ -98,8 +98,8 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                 children: [
                                   Container(
                                     margin: EdgeInsets.only(top: 20),
-                                    height: 200,
-                                    width: 350,
+                                    height: 150,
+                                    width: 320,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(20),
                                       color: Colors.white,
@@ -142,7 +142,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                         context)
                                                                     .textTheme
                                                                     .displayLarge,
-                                                                fontSize: 20,
+                                                                fontSize: 15,
                                                                 color: Colors
                                                                     .black),
                                                           ),
@@ -151,7 +151,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                       Container(
                                                         margin: EdgeInsets.only(
                                                             top: 10,
-                                                            left: 60,
+                                                            left: 70,
                                                             right: 1),
                                                         child: Text(
                                                           doc[index]["notelp"],
@@ -174,9 +174,8 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                         Row(
                                                           children: [
                                                             Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
                                                               child: Text(
                                                                 '${doc[index]['alamat lengkap']}',
                                                                 textAlign:
@@ -187,7 +186,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                         FontWeight
                                                                             .normal,
                                                                     fontSize:
-                                                                        17,
+                                                                        15,
                                                                     color: Colors
                                                                         .black),
                                                               ),
@@ -197,11 +196,10 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                         Row(
                                                           children: [
                                                             Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
                                                               child: Text(
-                                                                '${doc[index]['desa']}',
+                                                                '${doc[index]['desa']},',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
@@ -210,15 +208,14 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                         FontWeight
                                                                             .normal,
                                                                     fontSize:
-                                                                        17,
+                                                                        15,
                                                                     color: Colors
                                                                         .black),
                                                               ),
                                                             ),
                                                             Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
                                                               child: Text(
                                                                 '${doc[index]['provinsi']},',
                                                                 textAlign:
@@ -229,7 +226,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                         FontWeight
                                                                             .normal,
                                                                     fontSize:
-                                                                        17,
+                                                                        15,
                                                                     color: Colors
                                                                         .black),
                                                               ),
@@ -239,9 +236,8 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                         Row(
                                                           children: [
                                                             Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
                                                               child: Text(
                                                                 '${doc[index]['kota']},',
                                                                 textAlign:
@@ -252,15 +248,14 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                         FontWeight
                                                                             .normal,
                                                                     fontSize:
-                                                                        17,
+                                                                        15,
                                                                     color: Colors
                                                                         .black),
                                                               ),
                                                             ),
                                                             Padding(
-                                                              padding:
-                                                                  EdgeInsets
-                                                                      .all(5),
+                                                              padding: EdgeInsets
+                                                                  .only(top: 1),
                                                               child: Text(
                                                                 '${doc[index]['kecamatan']}',
                                                                 textAlign:
@@ -271,7 +266,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                         FontWeight
                                                                             .normal,
                                                                     fontSize:
-                                                                        17,
+                                                                        15,
                                                                     color: Colors
                                                                         .black),
                                                               ),
@@ -287,7 +282,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                                 fontWeight:
                                                                     FontWeight
                                                                         .normal,
-                                                                fontSize: 17,
+                                                                fontSize: 20,
                                                                 color: Colors
                                                                     .black),
                                                           ),
