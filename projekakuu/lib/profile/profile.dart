@@ -143,7 +143,7 @@ class _pageProfileState extends State<pageProfile> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("ALAMAT PENGIRIMAN",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
@@ -185,7 +185,7 @@ class _pageProfileState extends State<pageProfile> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("CARA PEMBAYARAN",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
@@ -222,7 +222,7 @@ class _pageProfileState extends State<pageProfile> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("INFRORMASI AKUN",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),

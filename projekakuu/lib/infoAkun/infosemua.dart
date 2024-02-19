@@ -47,14 +47,14 @@ class _pageInfoState extends State<pageInfo> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("E-mail",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
                 Padding(
                     padding: EdgeInsets.only(left: 205),
                     child: Text("E-mail",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
@@ -88,14 +88,14 @@ class _pageInfoState extends State<pageInfo> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("Username",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
                 Padding(
                     padding: EdgeInsets.only(left: 150),
                     child: Text("Username",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
@@ -129,14 +129,14 @@ class _pageInfoState extends State<pageInfo> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("No. Handphone",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
                 Padding(
                     padding: EdgeInsets.only(left: 75),
                     child: Text("No. Handphone",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
@@ -170,7 +170,7 @@ class _pageInfoState extends State<pageInfo> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("Ganti Password",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),
@@ -204,7 +204,7 @@ class _pageInfoState extends State<pageInfo> {
                 Padding(
                     padding: EdgeInsets.only(left: 10),
                     child: Text("Logout",
-                        style: GoogleFonts.roboto(
+                        style: GoogleFonts.radioCanada(
                             textStyle: Theme.of(context).textTheme.displayLarge,
                             fontSize: 15,
                             color: Colors.white))),

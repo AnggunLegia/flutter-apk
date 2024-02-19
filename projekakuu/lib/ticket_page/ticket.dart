@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/detail/detailticket.dart';
+import 'package:flutter_application_2/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class pageTicket extends StatefulWidget {
@@ -21,7 +23,13 @@ class _pageTicketState extends State<pageTicket> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Colors.white),
+          leading: BackButton(color: Colors.white,
+          onPressed: () {
+               Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => pageHome()));
+          },),
           title: Row(
             children: [
               Container(
@@ -123,6 +131,20 @@ class _pageTicketState extends State<pageTicket> {
                                     ],
                                   ),
                                 ),
+                              onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => detailticket(
+                                 id: data["id"],
+                               Asset: data["Asset"]?.toString() ??'' ,
+                               Tempat: data["Tempat"]?.toString() ??'',
+                               Harga: data["Harga"]?.toString() ??'',
+                               Deskripsi:data["Deskripsi"]?.toString() ??'',
+                               Stok: data["Stok"]?.toString() ??'',
+                               Tanggal: data["Tanggal"]?.toString() ??'', 
+                              )));
+                    }
                               );
                             });
                       }
