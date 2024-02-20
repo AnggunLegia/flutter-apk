@@ -297,7 +297,13 @@ class _rincianmerchState extends State<rincianmerch> {
                 ],
               ),
             ),
-
+             Container(
+              margin: EdgeInsets.only(top: 10, bottom: 10),
+              width: MediaQuery.of(context).size.width,
+              height: 1,
+              decoration: BoxDecoration(color: Colors.black),
+              
+            ),
 
           ],
         ),
