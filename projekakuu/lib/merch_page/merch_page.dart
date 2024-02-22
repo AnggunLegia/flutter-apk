@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/detail/detailmerch.dart';
-import 'package:flutter_application_2/detail/detailmerch2.dart';
+
 import 'package:flutter_application_2/home/home.dart';
 import 'package:google_fonts/google_fonts.dart';
 

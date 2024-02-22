@@ -2,28 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/detail/detailmerch.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class rincianmerch extends StatefulWidget {
-  const rincianmerch( {super.key, 
-  required this.Asset,
- 
-      required this.Judul,
-      required this.id,
-      required this.Menit,
-      
-     });
-      final String id;
-  final String Asset,
-      
-     Judul,
-      Menit;
-
+class rinciantiket extends StatefulWidget {
+  const rinciantiket( {super.key, 
+   required this.id, 
+  required this.Tempat, 
+  required this.Asset, 
+  
+  
+  required this.Harga, 
+  required this.Tanggal});
+ final String id;
+ final String Tempat, Asset, Harga, Tanggal;
      
 
   @override
-  State<rincianmerch> createState() => _rincianmerchState();
+  State<rinciantiket> createState() => _rinciantiketState();
 }
 
-class _rincianmerchState extends State<rincianmerch> {
+class _rinciantiketState extends State<rinciantiket> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +48,7 @@ class _rincianmerchState extends State<rincianmerch> {
             margin: EdgeInsets.only( left: 10),
               child: Padding(
                 padding:EdgeInsets.only(top: 10, left: 14),
-                child: Text(widget.Menit, style: 
+                child: Text(widget.Harga, style: 
                 GoogleFonts.radioCanada(
                         textStyle: Theme.of(context).textTheme.displayLarge,
                         fontSize: 17,
@@ -185,14 +181,28 @@ class _rincianmerchState extends State<rincianmerch> {
                                        ),
                   ),
                   Container(
-                      margin: EdgeInsets.only( top: 10, bottom: 5),
+                      margin: EdgeInsets.only( top: 15, bottom: 5),
                   child: Column(
                     children: [
                       Row(
                         children: [
                           Container(
                             padding: EdgeInsets.only( left:5, bottom: 10),
-                            child: Text(widget.Judul, 
+                            child: Text(widget.Tempat, 
+                            style: GoogleFonts.radioCanada(
+                              textStyle: Theme.of(context).textTheme.displayLarge,
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black),
+                            ),
+                          ),
+                        ],
+                      ),
+                       Row(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.only( left:5, bottom: 10, right: 120),
+                            child: Text(widget.Tanggal, 
                             style: GoogleFonts.radioCanada(
                               textStyle: Theme.of(context).textTheme.displayLarge,
                               fontSize: 18,
@@ -205,8 +215,8 @@ class _rincianmerchState extends State<rincianmerch> {
                       Row(
                         children: [
                           Container(
-                             padding: EdgeInsets.only(right: 120, bottom: 50),
-                  child: Text("IDR."+widget.Menit, 
+                             padding: EdgeInsets.only(right: 143, bottom: 50),
+                  child: Text("IDR"+widget.Harga, 
                   style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 15,
@@ -319,7 +329,7 @@ class _rincianmerchState extends State<rincianmerch> {
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 30, right:10),
-                      child: Text("IDR "+widget.Menit,
+                      child: Text("IDR "+widget.Harga,
                       style: TextStyle(
                         fontSize: 17,
                         color: Colors.black,
@@ -379,7 +389,7 @@ class _rincianmerchState extends State<rincianmerch> {
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 46, right:10),
-                      child: Text("IDR "+widget.Menit, style: TextStyle(
+                      child: Text("IDR "+widget.Harga, style: TextStyle(
                         fontSize: 17,
                         color: Colors.black,
                         fontWeight: FontWeight.bold

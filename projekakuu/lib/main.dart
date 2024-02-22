@@ -8,6 +8,7 @@ import 'package:flutter_application_2/pengiriman/alamat.dart';
 import 'package:flutter_application_2/pengiriman/detailAlamat.dart';
 import 'package:flutter_application_2/pengiriman/navAlamat.dart';
 import 'package:flutter_application_2/profile/profile.dart';
+import 'package:flutter_application_2/ticket_page/ticket.dart';
 
 import 'firebase_options.dart';
 
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: pageMerch(),
+      home: pageHome(),
     );
   }
 }

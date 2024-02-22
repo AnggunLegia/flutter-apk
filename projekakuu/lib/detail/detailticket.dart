@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/ticket_page/ticket.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../rincian_pesanan/rinciantiket.dart';
+
 class detailticket extends StatefulWidget {
   const detailticket({super.key, 
   required this.id, 
@@ -40,7 +42,7 @@ class _detailticketState extends State<detailticket> {
               child: Padding(
                 padding:EdgeInsets.only(top: 10, left: 14),
                 child: Text("BELI SEKARANG", style: 
-                GoogleFonts.candal(
+                GoogleFonts.radioCanada(
                         textStyle: Theme.of(context).textTheme.displayLarge,
                         fontSize: 15,
                         color: Colors.white),
@@ -51,6 +53,21 @@ class _detailticketState extends State<detailticket> {
                       borderRadius: BorderRadius.circular(15),
                     ),
             ),
+            onTap: () {
+              Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => rinciantiket(
+                                 id: widget.id,
+                                 Asset: widget.Asset,
+                                 Tempat: widget.Tempat,
+                                 Tanggal: widget.Tanggal,
+                                 Harga: widget.Harga,
+                                //  jumlah: 1
+                                 
+                                  
+                              )));
+            },
           ),
           GestureDetector(
             child: Container(
@@ -60,7 +77,7 @@ class _detailticketState extends State<detailticket> {
               child: Padding(
                 padding:EdgeInsets.only(top: 10, left: 14),
                 child: Text("TAMBAH KE TROLI", style: 
-                GoogleFonts.candal(
+                GoogleFonts.radioCanada(
                         textStyle: Theme.of(context).textTheme.displayLarge,
                         fontSize: 15,
                         color: Colors.white),
@@ -114,7 +131,7 @@ class _detailticketState extends State<detailticket> {
                 Container(
                   margin: EdgeInsets.only(left: 6, top: 10, bottom: 5),
                   child: Text(widget.Tempat, 
-                  style: GoogleFonts.candal(
+                  style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
@@ -129,7 +146,7 @@ class _detailticketState extends State<detailticket> {
                  Container(
                   margin: EdgeInsets.only(left: 6, bottom: 5),
                   child: Text(widget.Tanggal, 
-                  style: GoogleFonts.candal(
+                  style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -144,7 +161,7 @@ class _detailticketState extends State<detailticket> {
                  Container(
                   margin: EdgeInsets.only(left: 6, bottom: 5),
                   child: Text("IDR."+widget.Harga,
-                  style: GoogleFonts.candal(
+                  style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 17,
                     fontWeight: FontWeight.bold,
@@ -159,7 +176,7 @@ class _detailticketState extends State<detailticket> {
                  Container(
                   margin: EdgeInsets.only(bottom: 5, left: 6),
                   child: Text("Stok "+widget.Stok, 
-                  style: GoogleFonts.candal(
+                  style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 16,
                     color: const Color.fromARGB(255, 133, 129, 129)),
@@ -182,7 +199,7 @@ class _detailticketState extends State<detailticket> {
                        Container(
                         margin: EdgeInsets.only(left: 6, top: 5, bottom: 5),
                          child: Text("Pengiriman", 
-                                     style: GoogleFonts.candal(
+                                     style: GoogleFonts.radioCanada(
                           textStyle: Theme.of(context).textTheme.displayLarge,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -199,7 +216,7 @@ class _detailticketState extends State<detailticket> {
                   Container(
                     margin: EdgeInsets.only(bottom: 5),
                     child: Text("Alamat", style:
-                    GoogleFonts.candal(
+                    GoogleFonts.radioCanada(
                       textStyle: Theme.of(context).textTheme.displayLarge,
                       fontSize: 15,
                       color: Colors.black), 
@@ -213,7 +230,7 @@ class _detailticketState extends State<detailticket> {
                       Container(
                         margin: EdgeInsets.only(right: 280, bottom: 6, left: 5),
                         child: Text("Standar",
-                        style: GoogleFonts.candal(
+                        style: GoogleFonts.radioCanada(
                                           textStyle: Theme.of(context).textTheme.displayLarge,
                                           fontSize: 15,
                                           color: Colors.black),),
@@ -221,7 +238,7 @@ class _detailticketState extends State<detailticket> {
                     Container(
                       margin: EdgeInsets.only(bottom: 6),
                       child: Text("Rp 18.000",
-                        style: GoogleFonts.candal(
+                        style: GoogleFonts.radioCanada(
                       textStyle: Theme.of(context).textTheme.displayLarge,
                       fontSize: 15,
                       color: Colors.black),),
@@ -243,7 +260,7 @@ class _detailticketState extends State<detailticket> {
                 Container(
                   margin: EdgeInsets.only(left: 5, top: 10),
                   child: Text("Deskripsi", 
-                  style: GoogleFonts.candal(
+                  style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -258,7 +275,7 @@ class _detailticketState extends State<detailticket> {
                 Container(
                   margin: EdgeInsets.only(left: 5, top: 10),
                   child: Text(widget.Deskripsi, 
-                  style: GoogleFonts.candal(
+                  style: GoogleFonts.radioCanada(
                     textStyle: Theme.of(context).textTheme.displayLarge,
                     fontSize: 20,
                     color: Colors.black),
