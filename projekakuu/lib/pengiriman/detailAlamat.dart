@@ -45,13 +45,12 @@ class _pageDetailAlamatState extends State<pageDetailAlamat> {
 
   formalamat() async {
     try {
-      var uuid = Uuid();
-      String id = uuid.v4();
+      
       await FirebaseFirestore.instance
           .collection("alamat")
           .doc(widget.id)
           .update({
-        "uid": id,
+        
         "nama penerima": _namapenerima.text,
         "notelp": _notelp.text,
         "provinsi": _provinsi.text,

@@ -2,7 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/pengiriman/alamat.dart';
 import 'package:flutter_application_2/pengiriman/detailAlamat.dart';
+import 'package:flutter_application_2/pengiriman/selectTambah.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../profile/profile.dart';
+import 'navAlamatTik.dart';
 
 class pageNavAlamat extends StatefulWidget {
   const pageNavAlamat({
@@ -34,6 +38,10 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
               ),
             ],
           ),
+            leading: BackButton(onPressed: () {
+                              Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => pageProfile()));
+          },),
           toolbarHeight: 60,
           backgroundColor: Colors.black,
         ),
@@ -61,8 +69,59 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                 ),
                 onTap: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => pageAlamat()));
+                      MaterialPageRoute(builder: (context) => selectTambahAlamat()));
                 },
+              ),
+              Row(
+                children: [
+                  GestureDetector( 
+                    child: Container(
+                       width: 70,
+                      height: 30,
+                      padding: EdgeInsets.only(left: 5),
+                      margin: EdgeInsets.only(left: 60, right: 70),
+                      child: Text("Merch", style: 
+                      TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600
+                      ),),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[350],
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      ),
+                      onTap: () {
+                          Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
+                      },
+                  ),
+                   GestureDetector(
+                    child: Container(
+                      width: 70,
+                      height: 30,
+                      padding: EdgeInsets.only(left: 5),
+                      margin: EdgeInsets.only(right: 10, left: 80),
+                      child: Text("Ticket",
+                      style: 
+                      TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w600
+                      ),
+                      ),
+                      decoration: BoxDecoration(
+                        color: Colors.grey[350],
+                        borderRadius: BorderRadius.circular(5)
+                      ),
+                      ),
+                      
+                      onTap: () {
+                          Navigator.push(
+                      context, MaterialPageRoute(builder: (_) => pageNavAlamatTik()));
+                      },
+                  )
+                ],
               ),
               StreamBuilder(
                 stream: _userStream,
@@ -151,7 +210,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                       Container(
                                                         margin: EdgeInsets.only(
                                                             top: 10,
-                                                            left: 70,
+                                                            left: 40,
                                                             right: 1),
                                                         child: Text(
                                                           doc[index]["notelp"],
@@ -175,7 +234,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                           children: [
                                                             Padding(
                                                               padding: EdgeInsets
-                                                                  .only(top: 1),
+                                                                  .only(top: 1, left: 20),
                                                               child: Text(
                                                                 '${doc[index]['alamat lengkap']}',
                                                                 textAlign:
@@ -199,7 +258,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                               padding: EdgeInsets
                                                                   .only(top: 1),
                                                               child: Text(
-                                                                '${doc[index]['desa']},',
+                                                                '${doc[index]['desa']}, ',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
@@ -239,7 +298,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                               padding: EdgeInsets
                                                                   .only(top: 1),
                                                               child: Text(
-                                                                '${doc[index]['kota']},',
+                                                                '${doc[index]['kota']}, ',
                                                                 textAlign:
                                                                     TextAlign
                                                                         .left,
