@@ -4,6 +4,7 @@ import 'package:flutter_application_2/pengiriman/alamat.dart';
 import 'package:flutter_application_2/pengiriman/detailAlamat.dart';
 import 'package:flutter_application_2/pengiriman/detailAlamatTik.dart';
 import 'package:flutter_application_2/pengiriman/selectTambah.dart';
+import 'package:flutter_application_2/profile/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'navAlamat.dart';
@@ -38,6 +39,10 @@ class _pageNavAlamatTikState extends State<pageNavAlamatTik> {
               ),
             ],
           ),
+          leading: BackButton(onPressed: () {
+                              Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => pageProfile()));
+          },),
           toolbarHeight: 60,
           backgroundColor: Colors.black,
         ),
