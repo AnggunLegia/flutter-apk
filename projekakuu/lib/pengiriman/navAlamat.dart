@@ -38,7 +38,8 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
               ),
             ],
           ),
-            leading: BackButton(onPressed: () {
+            leading: BackButton(color: Color.fromRGBO(202, 31, 31, 1),
+            onPressed: () {
                               Navigator.push(context,
                       MaterialPageRoute(builder: (context) => pageProfile()));
           },),
