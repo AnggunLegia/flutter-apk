@@ -39,11 +39,13 @@ class _pageNavAlamatTikState extends State<pageNavAlamatTik> {
               ),
             ],
           ),
-          leading: BackButton( color: Color.fromRGBO(202, 31, 31, 1),
-          onPressed: () {
-                              Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => pageProfile()));
-          },),
+          leading: BackButton(
+            color: Color.fromRGBO(202, 31, 31, 1),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => pageProfile()));
+            },
+          ),
           toolbarHeight: 60,
           backgroundColor: Colors.black,
         ),
@@ -70,58 +72,59 @@ class _pageNavAlamatTikState extends State<pageNavAlamatTik> {
                       borderRadius: BorderRadius.circular(10)),
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => selectTambahAlamat()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => selectTambahAlamat()));
                 },
               ),
               Row(
                 children: [
-                  GestureDetector( 
-                    child: Container(
-                       width: 70,
-                      height: 30,
-                      padding: EdgeInsets.only(left: 5),
-                      margin: EdgeInsets.only(left: 60, right: 70),
-                      child: Text("Merch",
-                      style: 
-                      TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600
-                      ),),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[350],
-                        borderRadius: BorderRadius.circular(5)
-                      ),
-                      ),
-                      onTap: () {
-                          Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
-                      },
-                  ),
-                   GestureDetector(
+                  GestureDetector(
                     child: Container(
                       width: 70,
                       height: 30,
-                      padding: EdgeInsets.only(left: 5),
-                      margin: EdgeInsets.only(right: 10, left: 80),
-                      child: Text("Ticket",
-                      style: 
-                      TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600
-                      ),),
+                      padding: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(left: 30, right: 80),
+                      child: Text(
+                        "Merch",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
+                      ),
                       decoration: BoxDecoration(
-                        color: Colors.grey[350],
-                        borderRadius: BorderRadius.circular(5)
+                          color: Colors.grey[350],
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => pageNavAlamat()));
+                    },
+                  ),
+                  GestureDetector(
+                    child: Container(
+                      width: 70,
+                      height: 30,
+                      padding: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(right: 10, left: 80),
+                      child: Text(
+                        "Ticket",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
                       ),
-                      ),
-                      
-                      onTap: () {
-                          Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => pageNavAlamatTik()));
-                      },
+                      decoration: BoxDecoration(
+                          color: Colors.grey[350],
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => pageNavAlamatTik()));
+                    },
                   )
                 ],
               ),
@@ -139,17 +142,16 @@ class _pageNavAlamatTikState extends State<pageNavAlamatTik> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => pageDetailAlamatTik(
+                                        builder: (context) =>
+                                            pageDetailAlamatTik(
                                               id: doc[index]['uid'],
                                               namaPenerima: doc[index]
                                                   ['nama penerima'],
                                               email: doc[index]['email'],
-                                              
                                             )));
                               },
-                              child: Column(
-                                children: [
-                                  Container(
+                              child: Column(children: [
+                                Container(
                                     margin: EdgeInsets.only(top: 20),
                                     height: 100,
                                     width: 320,
@@ -169,27 +171,27 @@ class _pageNavAlamatTikState extends State<pageNavAlamatTik> {
                                         )
                                       ],
                                     ),
-                                    child: Row(
-                                      children: [
-                                        // Icon(Icons.location_on_outlined, size:20,
-                                        // color: Colors.black,),
-                                        Column(
-                                          children: [
-                                            Container(
-                                              child: Column(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Container(
-                                                        child: Padding(
-                                                          padding:
-                                                              const EdgeInsets.only(
-                                                                  left: 10,
-                                                                  top: 10, right: 40),
-                                                          child: Text(
-                                                            doc[index][
-                                                                "nama penerima"],
-                                                            style: GoogleFonts.radioCanada(
+                                    child: Row(children: [
+                                      // Icon(Icons.location_on_outlined, size:20,
+                                      // color: Colors.black,),
+                                      Column(
+                                        children: [
+                                          Container(
+                                            child: Column(
+                                              children: [
+                                                Row(children: [
+                                                  Container(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 10,
+                                                              top: 10,
+                                                              right: 40),
+                                                      child: Text(
+                                                        doc[index]
+                                                            ["nama penerima"],
+                                                        style: GoogleFonts
+                                                            .radioCanada(
                                                                 textStyle: Theme.of(
                                                                         context)
                                                                     .textTheme
@@ -197,41 +199,32 @@ class _pageNavAlamatTikState extends State<pageNavAlamatTik> {
                                                                 fontSize: 15,
                                                                 color: Colors
                                                                     .black),
-                                                          ),
-                                                        ),
                                                       ),
-                                                    ]
+                                                    ),
                                                   ),
-                                                      Container(
-                                                        margin: EdgeInsets.only(
-                                                            top: 10,
-                                                            left: 70,
-                                                            right: 1),
-                                                        child: Text(
-                                                          doc[index]["email"],
-                                                          textAlign:
-                                                              TextAlign.right,
-                                                          style: TextStyle(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontSize: 15,
-                                                              color:
-                                                                  Colors.black),
-                                                        ),
-                                                      ),
-                                                   
-                                                 
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              )]
-                              )
-                                  )
-                                ]
-                              )
-                          );
+                                                ]),
+                                                Container(
+                                                  margin: EdgeInsets.only(
+                                                      top: 10,
+                                                      left: 70,
+                                                      right: 1),
+                                                  child: Text(
+                                                    doc[index]["email"],
+                                                    textAlign: TextAlign.right,
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 15,
+                                                        color: Colors.black),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      )
+                                    ]))
+                              ]));
                         });
                   }
                   return CircularProgressIndicator();

@@ -325,7 +325,7 @@ class _pageAlamatState extends State<pageAlamat> {
                       //   _formkey.currentState!.validate();
                     },
                     child: Text(
-                      "TAMBAH ALAMAT",
+                      "TAMBAH ALAMAT MERCH",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),

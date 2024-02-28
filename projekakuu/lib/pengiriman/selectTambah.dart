@@ -21,31 +21,31 @@ class _selectTambahAlamatState extends State<selectTambahAlamat> {
             style: GoogleFonts.radioCanada(
                 textStyle: Theme.of(context).textTheme.displayLarge,
                 fontSize: 20,
-                color: Colors.black),
+                color: Colors.white),
           ),
           margin: EdgeInsets.only(left: 25),
         ),
-          
-          
+        leading: BackButton(
+          color: Colors.white,
+        ),
         toolbarHeight: 60,
+        backgroundColor: Colors.black,
       ),
       body: Column(
         children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => pageAlamat()));
-              },
-              child: Container(
+          GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => pageAlamat()));
+            },
+            child: Container(
               height: 70,
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.only(bottom: 2),
               decoration: BoxDecoration(
                 color: Colors.black,
               ),
-                       child: Row(
+              child: Row(
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
@@ -59,7 +59,8 @@ class _selectTambahAlamatState extends State<selectTambahAlamat> {
                       padding: EdgeInsets.only(left: 10),
                       child: Text("Tambah Alamat Merch",
                           style: GoogleFonts.radioCanada(
-                              textStyle: Theme.of(context).textTheme.displayLarge,
+                              textStyle:
+                                  Theme.of(context).textTheme.displayLarge,
                               fontSize: 15,
                               color: Colors.white))),
                   Padding(
@@ -74,14 +75,12 @@ class _selectTambahAlamatState extends State<selectTambahAlamat> {
                   )
                 ],
               ),
-              ),
             ),
+          ),
           GestureDetector(
             onTap: () {
-              Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => alamatticket()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => alamatticket()));
             },
             child: Container(
               height: 70,
@@ -104,15 +103,14 @@ class _selectTambahAlamatState extends State<selectTambahAlamat> {
                       padding: EdgeInsets.only(left: 10),
                       child: Text("Tambah Alamat Tiket",
                           style: GoogleFonts.radioCanada(
-                              textStyle: Theme.of(context).textTheme.displayLarge,
+                              textStyle:
+                                  Theme.of(context).textTheme.displayLarge,
                               fontSize: 15,
                               color: Colors.white))),
                   Padding(
-                    padding: EdgeInsets.only(left: 120),
+                    padding: EdgeInsets.only(left: 115),
                     child: IconButton(
-                        onPressed: () {
-                          
-                        },
+                        onPressed: () {},
                         icon: Icon(
                           Icons.arrow_forward_ios_rounded,
                           size: 20,

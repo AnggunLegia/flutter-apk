@@ -38,11 +38,13 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
               ),
             ],
           ),
-            leading: BackButton(color: Color.fromRGBO(202, 31, 31, 1),
+          leading: BackButton(
+            color: Color.fromRGBO(202, 31, 31, 1),
             onPressed: () {
-                              Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => pageProfile()));
-          },),
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => pageProfile()));
+            },
+          ),
           toolbarHeight: 60,
           backgroundColor: Colors.black,
         ),
@@ -69,58 +71,59 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                       borderRadius: BorderRadius.circular(10)),
                 ),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => selectTambahAlamat()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => selectTambahAlamat()));
                 },
               ),
               Row(
                 children: [
-                  GestureDetector( 
-                    child: Container(
-                       width: 70,
-                      height: 30,
-                      padding: EdgeInsets.only(left: 5),
-                      margin: EdgeInsets.only(left: 60, right: 70),
-                      child: Text("Merch", style: 
-                      TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600
-                      ),),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[350],
-                        borderRadius: BorderRadius.circular(5)
-                      ),
-                      ),
-                      onTap: () {
-                          Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
-                      },
-                  ),
-                   GestureDetector(
+                  GestureDetector(
                     child: Container(
                       width: 70,
                       height: 30,
-                      padding: EdgeInsets.only(left: 5),
-                      margin: EdgeInsets.only(right: 10, left: 80),
-                      child: Text("Ticket",
-                      style: 
-                      TextStyle(
-                        fontSize: 20,
-                        color: Colors.black,
-                        fontWeight: FontWeight.w600
-                      ),
+                      padding: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(left: 30, right: 80),
+                      child: Text(
+                        "Merch",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.grey[350],
-                        borderRadius: BorderRadius.circular(5)
+                          color: Colors.grey[350],
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => pageNavAlamat()));
+                    },
+                  ),
+                  GestureDetector(
+                    child: Container(
+                      width: 70,
+                      height: 30,
+                      padding: EdgeInsets.only(left: 10),
+                      margin: EdgeInsets.only(right: 10, left: 80),
+                      child: Text(
+                        "Ticket",
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w600),
                       ),
-                      ),
-                      
-                      onTap: () {
-                          Navigator.push(
-                      context, MaterialPageRoute(builder: (_) => pageNavAlamatTik()));
-                      },
+                      decoration: BoxDecoration(
+                          color: Colors.grey[350],
+                          borderRadius: BorderRadius.circular(5)),
+                    ),
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (_) => pageNavAlamatTik()));
+                    },
                   )
                 ],
               ),
@@ -235,7 +238,9 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                           children: [
                                                             Padding(
                                                               padding: EdgeInsets
-                                                                  .only(top: 1, left: 20),
+                                                                  .only(
+                                                                      top: 1,
+                                                                      left: 20),
                                                               child: Text(
                                                                 '${doc[index]['alamat lengkap']}',
                                                                 textAlign:

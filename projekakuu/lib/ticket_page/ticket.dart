@@ -23,13 +23,13 @@ class _pageTicketState extends State<pageTicket> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Colors.white,
-          onPressed: () {
-               Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => pageHome()));
-          },),
+          leading: BackButton(
+            color: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => pageHome()));
+            },
+          ),
           title: Row(
             children: [
               Container(
@@ -76,76 +76,87 @@ class _pageTicketState extends State<pageTicket> {
                               var data = ticketDocs[index].data()
                                   as Map<String, dynamic>;
                               return GestureDetector(
-                                child: Container(
-                                  width: 70,
-                                  height: 150,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        width: 2, color: Colors.black),
-                                    color: Colors.grey[400],
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black26,
-                                          spreadRadius: 3,
-                                          blurRadius: 2,
-                                          offset: Offset(0, 4))
-                                    ],
+                                  child: Container(
+                                    width: 70,
+                                    height: 150,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 2, color: Colors.black),
+                                      color: Colors.grey[400],
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black26,
+                                            spreadRadius: 3,
+                                            blurRadius: 2,
+                                            offset: Offset(0, 4))
+                                      ],
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 130,
+                                          height: 130,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      data['Asset']))),
+                                          margin: EdgeInsets.only(
+                                              top: 20, bottom: 10),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 42),
+                                          child: Text(data['Tempat'],
+                                              style: GoogleFonts.radioCanada(
+                                                  textStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .displayLarge,
+                                                  fontSize: 10,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 70),
+                                          child: Text("IDR ${data['Harga']}",
+                                              style: GoogleFonts.radioCanada(
+                                                  textStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .displayLarge,
+                                                  fontSize: 10,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 130,
-                                        height: 130,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                                    data['Asset']))),
-                                        margin: EdgeInsets.only(
-                                            top: 20, bottom: 10),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 42),
-                                        child: Text(data['Tempat'],
-                                            style: GoogleFonts.radioCanada(
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .displayLarge,
-                                                fontSize: 10,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 70),
-                                        child: Text("IDR ${data['Harga']}",
-                                            style: GoogleFonts.radioCanada(
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .displayLarge,
-                                                fontSize: 10,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => detailticket(
-                                 id: data["id"],
-                               Asset: data["Asset"]?.toString() ??'' ,
-                               Tempat: data["Tempat"]?.toString() ??'',
-                               Harga: data["Harga"]?.toString() ??'',
-                               Deskripsi:data["Deskripsi"]?.toString() ??'',
-                               Stok: data["Stok"]?.toString() ??'',
-                               Tanggal: data["Tanggal"]?.toString() ??'', 
-                              )));
-                    }
-                              );
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => detailticket(
+                                                  id: data["id"],
+                                                  Asset: data["Asset"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Tempat: data["Tempat"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Harga: data["Harga"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Deskripsi: data["Deskripsi"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Stok: data["Stok"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Tanggal: data["Tanggal"]
+                                                          ?.toString() ??
+                                                      '',
+                                                )));
+                                  });
                             });
                       }
                     }))

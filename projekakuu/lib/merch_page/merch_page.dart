@@ -24,15 +24,13 @@ class _pageMerchState extends State<pageMerch> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          leading: BackButton(color: Colors.white,
-          onPressed: () {
-             Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => pageHome()
-                          )
-             );
-          },),
+          leading: BackButton(
+            color: Colors.white,
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => pageHome()));
+            },
+          ),
           title: Row(
             children: [
               Container(
@@ -52,9 +50,8 @@ class _pageMerchState extends State<pageMerch> {
         ),
         body: SingleChildScrollView(
             child: GestureDetector(
-
-              child: Column(
-                      children: [
+          child: Column(
+            children: [
               Padding(
                 padding: EdgeInsets.all(20),
                 child: FutureBuilder<QuerySnapshot>(
@@ -66,7 +63,7 @@ class _pageMerchState extends State<pageMerch> {
                         return Text('error: ${snapshot.error}');
                       } else {
                         var merchDocs = snapshot.data!.docs;
-            
+
                         return GridView.builder(
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -78,94 +75,93 @@ class _pageMerchState extends State<pageMerch> {
                             physics: NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (BuildContext ctx, index) {
-                              var data =
-                                  merchDocs[index].data() as Map<String, dynamic>;
+                              var data = merchDocs[index].data()
+                                  as Map<String, dynamic>;
                               return GestureDetector(
-                               
-                     
-                     
-                                child: Container(
-                                  width: 70,
-                                  height: 120,
-                                  decoration: BoxDecoration(
-                                    border:
-                                        Border.all(width: 2, color: Colors.black),
-                                    color: Colors.grey[400],
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    boxShadow: [
-                                      BoxShadow(
-                                          color: Colors.black26,
-                                          spreadRadius: 3,
-                                          blurRadius: 2,
-                                          offset: Offset(0, 4))
-                                    ],
+                                  child: Container(
+                                    width: 70,
+                                    height: 140,
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 2, color: Colors.black),
+                                      color: Colors.grey[400],
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      boxShadow: [
+                                        BoxShadow(
+                                            color: Colors.black26,
+                                            spreadRadius: 3,
+                                            blurRadius: 2,
+                                            offset: Offset(0, 4))
+                                      ],
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        Container(
+                                          width: 130,
+                                          height: 130,
+                                          decoration: BoxDecoration(
+                                              image: DecorationImage(
+                                                  image: NetworkImage(
+                                                      data['Asset']))),
+                                          margin: EdgeInsets.only(
+                                              top: 20, bottom: 10),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              left: 10, right: 30),
+                                          child: Text(data['Judul'],
+                                              style: GoogleFonts.radioCanada(
+                                                  textStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .displayLarge,
+                                                  fontSize: 10,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 70),
+                                          child: Text("IDR ${data['Menit']}",
+                                              style: GoogleFonts.radioCanada(
+                                                  textStyle: Theme.of(context)
+                                                      .textTheme
+                                                      .displayLarge,
+                                                  fontSize: 10,
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold)),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        width: 140,
-                                        height: 140,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image:
-                                                    NetworkImage(data['Asset']))),
-                                        margin:
-                                            EdgeInsets.only(top: 20, bottom: 10),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(
-                                            left: 10, right: 30),
-                                        child: Text(data['Judul'],
-                                            style: GoogleFonts.radioCanada(
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .displayLarge,
-                                                fontSize: 10,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.only(right: 70),
-                                        child: Text("IDR ${data['Menit']}",
-                                            style: GoogleFonts.radioCanada(
-                                                textStyle: Theme.of(context)
-                                                    .textTheme
-                                                    .displayLarge,
-                                                fontSize: 10,
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                onTap: () {
-                     
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => detailmerch(
-                               id: data["id"],
-                               Asset: data["Asset"]?.toString() ??'' ,
-                               Judul: data["Judul"]?.toString() ??'',
-                               Menit: data["Menit"]?.toString() ??'',
-                               Deskripsi:data["Deskripsi"]?.toString() ??'',
-                               Stok: data["Stok"]?.toString() ??'', 
-                                 
-                              )));
-                                }
-                              );
-                            
+                                  onTap: () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => detailmerch(
+                                                  id: data["id"],
+                                                  Asset: data["Asset"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Judul: data["Judul"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Menit: data["Menit"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Deskripsi: data["Deskripsi"]
+                                                          ?.toString() ??
+                                                      '',
+                                                  Stok: data["Stok"]
+                                                          ?.toString() ??
+                                                      '',
+                                                )));
+                                  });
                             });
                       }
                     }),
               )
-                      ],
-                    ),
-                     
-                    
-            )
-            )
-    );
-           
+            ],
+          ),
+        )));
   }
 }
