@@ -16,13 +16,70 @@ class detailmerch extends StatefulWidget {
   });
   final String id;
   final String Asset, Deskripsi, Judul, Menit, Stok;
+  
 
   @override
   State<detailmerch> createState() => _detailmerchState();
 }
 
 class _detailmerchState extends State<detailmerch> {
-  int standar = 18000;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  Future<void> _troli() async {
+    try {
+     
+        await _firestore.collection('trolimerch').add({
+          'judul' : widget.Judul,
+          'assets' : widget.Asset,
+          'harga': widget.Menit,
+          'jumlah': 1 ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Sukses menambahkan ke troli')),)
+       ;
+     
+      
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+      );
+    }
+  }
+ Future<void> _beli() async {
+    try {
+     
+        await _firestore.collection('belilangsung').add({
+          'judul' : widget.Judul,
+          'assets' : widget.Asset,
+          'harga': widget.Menit,
+          'jumlah': 1 ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+        await FirebaseFirestore.instance.collection('belilangsung').doc('id').get();
+         Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => rincianmerch(
+                              id: widget.id,
+                              Asset: widget.Asset,
+                              Judul: widget.Judul,
+                              Menit: widget.Menit,
+                              
+                              //  jumlah: 1
+                            )));
+              
+       ;
+     
+      
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,51 +96,58 @@ class _detailmerchState extends State<detailmerch> {
                 )),
             GestureDetector(
               child: Container(
-                height: 35,
                 width: 120,
-                margin: EdgeInsets.only(right: 10, left: 10),
-                child: Padding(
-                  padding: EdgeInsets.only(top: 10, left: 10),
-                  child: Text(
-                    "BELI SEKARANG",
-                    style: GoogleFonts.radioCanada(
-                        textStyle: Theme.of(context).textTheme.displayLarge,
-                        fontSize: 12,
-                        color: Colors.white),
+                 margin: EdgeInsets.only(right: 10, left: 10),
+                   
+                      padding: EdgeInsets.only(top: 10, left: 10),
+                      decoration: BoxDecoration(
+                      color: Colors.amber[600],
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                child: ElevatedButton(
+                  
+                   
+                   
+                      child: Text(
+                        "BELI SEKARANG",
+                        style: GoogleFonts.radioCanada(
+                            textStyle: Theme.of(context).textTheme.displayLarge,
+                            fontSize: 12,
+                            color: Colors.white),
+                      ),
+                  
+                    
+                  
+                  onPressed:  _beli,
+                    
+                
+                  style: ButtonStyle(
+                    minimumSize: MaterialStateProperty.all(Size(120, 35)),
+                    maximumSize: MaterialStateProperty.all(Size(120, 35)),
+                    backgroundColor: MaterialStateProperty.all(Colors.amber[600],) ,
+              
                   ),
                 ),
-                decoration: BoxDecoration(
-                  color: Colors.amber[600],
-                  borderRadius: BorderRadius.circular(15),
-                ),
               ),
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => rincianmerch(
-                              id: widget.id,
-                              Asset: widget.Asset,
-                              Judul: widget.Judul,
-                              Menit: widget.Menit,
-                              //  jumlah: 1
-                            )));
-              },
+              
             ),
             GestureDetector(
               child: Container(
                 height: 35,
                 width: 130,
-                child: Padding(
+               
                   padding: EdgeInsets.only(top: 10, left: 10),
-                  child: Text(
-                    "TAMBAH KE TROLI",
-                    style: GoogleFonts.radioCanada(
-                        textStyle: Theme.of(context).textTheme.displayLarge,
-                        fontSize: 12,
-                        color: Colors.white),
+                  child: ElevatedButton(
+                    onPressed: _troli,
+                    child: Text(
+                      "TAMBAH KE TROLI",
+                      style: GoogleFonts.radioCanada(
+                          textStyle: Theme.of(context).textTheme.displayLarge,
+                          fontSize: 12,
+                          color: Colors.white),
+                    ),
                   ),
-                ),
+              
                 decoration: BoxDecoration(
                   color: Colors.red[800],
                   borderRadius: BorderRadius.circular(15),
