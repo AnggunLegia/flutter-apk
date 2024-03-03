@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/merch_page/merch_page.dart';
 import 'package:flutter_application_2/profile/profile.dart';
+import 'package:flutter_application_2/riwayat/riwayat.dart';
 import 'package:flutter_application_2/troli/trolimerch.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -46,7 +47,7 @@ class _pageHomeState extends State<pageHome> {
                 child: IconButton(
                     onPressed: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageMerch()));
+                          MaterialPageRoute(builder: (context) => riwayatpembelian()));
                     },
                     icon: Icon(
                       Icons.library_books_outlined,

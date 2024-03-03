@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/merch_page/merch_page.dart';
 import 'package:flutter_application_2/troli/cekotmerh.dart';
+import 'package:flutter_application_2/troli/trolitiket.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../detail/detailmerch.dart';
 import '../pengiriman/navAlamat.dart';
 import '../pengiriman/navAlamatTik.dart';
 
@@ -25,7 +28,7 @@ class _trolimerchState extends State<trolimerch> {
         ),
         backgroundColor: Colors.black,
         title: Text(
-          "Check Out",
+          "Cart",
           style: TextStyle(fontSize: 25, color: Color.fromRGBO(202, 31, 31, 1)),
         ),
       ),
@@ -40,7 +43,7 @@ class _trolimerchState extends State<trolimerch> {
                       width: 70,
                       height: 30,
                       padding: EdgeInsets.only(left: 10),
-                      margin: EdgeInsets.only(left: 30, right: 80, top: 15, bottom: 15),
+                      margin: EdgeInsets.only(left: 30, right: 80, top: 15),
                       child: Text(
                         "Merch",
                         style: TextStyle(
@@ -54,7 +57,7 @@ class _trolimerchState extends State<trolimerch> {
                     ),
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => pageNavAlamat()));
+                          MaterialPageRoute(builder: (_) => trolimerch()));
                     },
                   ),
                   GestureDetector(
@@ -62,7 +65,7 @@ class _trolimerchState extends State<trolimerch> {
                       width: 70,
                       height: 30,
                       padding: EdgeInsets.only(left: 10),
-                      margin: EdgeInsets.only(right: 10, left: 80, top: 15, bottom: 15),
+                      margin: EdgeInsets.only(right: 10, left: 80, top: 15),
                       child: Text(
                         "Ticket",
                         style: TextStyle(
@@ -78,11 +81,17 @@ class _trolimerchState extends State<trolimerch> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (_) => pageNavAlamatTik()));
+                              builder: (_) => trolitiket()));
                     },
                   )
                 ],
               ),
+              Container(
+              margin: EdgeInsets.only(top: 15, bottom: 10),
+              width: MediaQuery.of(context).size.width,
+              height: 4,
+              decoration: BoxDecoration(color: Colors.grey[350]),
+            ),
               StreamBuilder(
                 stream: _userStream,
                 builder: (context, snapshot) {
@@ -119,14 +128,22 @@ class _trolimerchState extends State<trolimerch> {
                                 ),
                                 child:  Row(
                 children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 5, left: 10, right: 10),
-                    width: 150,
-                    height: 150,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                                image: NetworkImage(doc[index]["assets"]),
-                                fit: BoxFit.cover)),
+                  GestureDetector(
+                    onTap: () {
+                       Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => pageMerch()));
+                    },
+                    child: Container(
+                      margin: EdgeInsets.only(top: 5, left: 10, right: 10),
+                      width: 150,
+                      height: 150,
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                                  image: NetworkImage(doc[index]["assets"]),
+                                  fit: BoxFit.cover)),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, bottom: 5),
@@ -216,7 +233,28 @@ class _trolimerchState extends State<trolimerch> {
                 ],
               ),
                               ),
-                              
+                              Container(
+                                child: Row(
+                                  children: [
+                                     Container(
+                                        margin: EdgeInsets.only(left:320, top: 5, bottom: 5 ),
+                                        padding: EdgeInsets.only(left: 10, top: 5),
+                                        width: 70,
+                                        height: 25,
+                                        child: Text("Pesan", 
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 12
+                                        ),),
+                                        decoration: BoxDecoration(
+                                          color: Color.fromRGBO(202, 31, 31, 1),
+                                          borderRadius: BorderRadius.circular(10)
+                                        ) ,
+                                      ),
+                                    
+                                  ],
+                                ),
+                              ),
                                Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
               width: MediaQuery.of(context).size.width,

@@ -1,49 +1,28 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/detail/detailmerch.dart';
-import 'package:flutter_application_2/merch_page/merch_page.dart';
+import 'package:flutter_application_2/troli/trolimerch.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class rincianmerch extends StatefulWidget {
-  const rincianmerch({
+import '../home/home.dart';
+
+class detailcekottik extends StatefulWidget {
+  const detailcekottik({
     super.key,
-    required this.Asset,
-    required this.Judul,
+    
     required this.id,
-    required this.Menit,
+     required this.assets, required this.judul, required this.harga, required this.jumlah,
+     required this.tanggal
   });
   final String id;
-  final String Asset, Judul, Menit;
+  final String assets, judul, harga, jumlah, tanggal;
 
   @override
-  State<rincianmerch> createState() => _rincianmerchState();
+  State<detailcekottik> createState() => _detailcekottikState();
 }
 
-class _rincianmerchState extends State<rincianmerch> {
-  //  Future<void> _deleteData(BuildContext context) async {
-  //   try {
-      
-  //     await FirebaseFirestore.instance.collection('belilangsung').doc(widget.id).delete();
-  //     Navigator.push(
-  //                         context,
-  //                         MaterialPageRoute(
-  //                             builder: ((context) => pageMerch())));
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text('Data berhasil dihapus'),
-  //       ),
-  //     );
-  //   } catch (e) {
-  //     ScaffoldMessenger.of(context).showSnackBar(
-  //       SnackBar(
-  //         content: Text('Error: $e'),
-  //       ),
-  //     );
-  //   }
-  // }
-
-  final _userStream =
-      FirebaseFirestore.instance.collection("belilangsung").snapshots();
+class _detailcekottikState extends State<detailcekottik> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +50,7 @@ class _rincianmerchState extends State<rincianmerch> {
               child: Padding(
                 padding: EdgeInsets.only(top: 10, left: 14),
                 child: Text(
-                  widget.Menit,
+                  widget.harga,
                   style: GoogleFonts.radioCanada(
                       textStyle: Theme.of(context).textTheme.displayLarge,
                       fontSize: 17,
@@ -99,6 +78,38 @@ class _rincianmerchState extends State<rincianmerch> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
+              onTap: () async {
+                 try {
+     
+        await _firestore.collection('pembelian').add({
+          'judul' : widget.judul,
+          
+          'assets' : widget.assets,
+          'harga': widget.harga,
+          'jumlah': widget.jumlah ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+  print("object");
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('pembelian sukses')),)
+       ;
+        } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+      );
+    }
+    FirebaseFirestore.instance
+                          .collection('trolitiket')
+                          .doc(widget.id)
+                          .delete();
+                          ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Data berhasil dihapus'),
+        ),
+      );
+              },
             )
           ],
         ),
@@ -106,33 +117,20 @@ class _rincianmerchState extends State<rincianmerch> {
       appBar: AppBar(
         leading: BackButton(
           color: Colors.white,
-          onPressed:()async {
-            try{
-             FirebaseFirestore.instance
-                          .collection('belilangsung')
-                          .doc()
-                          .delete();
-                          ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Data berhasil dihapus'),
-        ),
-      );
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => pageMerch())));
-            } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Error: $e'),
-        ),
-      );
-
-            }
-                      //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
-                      //   _formkey.currentState!.validate();
-            
-          },
+          // onPressed: () {
+          //   FirebaseFirestore.instance
+          //                 .collection('')
+          //                 .doc(widget.id)
+          //                 .delete();
+          //             Navigator.push(
+          //                 context,
+          //                 MaterialPageRoute(
+          //                     builder: ((context) => trolimerch())));
+          //             //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+          //             //   _formkey.currentState!.validate();
+          //           },
+          
+          
         ),
         backgroundColor: Colors.black,
         title: Text(
@@ -209,21 +207,7 @@ class _rincianmerchState extends State<rincianmerch> {
               margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(color: Colors.grey[350]),
             ),
-          StreamBuilder(
-                stream: _userStream,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    var doc = snapshot.data!.docs;
-                    return ListView.builder(
-                        itemCount: doc.length,
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            
-                           
-                          },
-                         child: Container(
+            Container(
               child: Row(
                 children: [
                   Container(
@@ -232,7 +216,7 @@ class _rincianmerchState extends State<rincianmerch> {
                     height: 150,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            image: NetworkImage(doc[index]["assets"]),
+                            image: NetworkImage(widget.assets),
                             fit: BoxFit.cover)),
                   ),
                   Container(
@@ -245,7 +229,25 @@ class _rincianmerchState extends State<rincianmerch> {
                               padding: EdgeInsets.only(
                                   bottom: 10, right: 40, left: 5),
                               child: Text(
-                                doc[index]["judul"],
+                                widget.judul,
+                                style: GoogleFonts.radioCanada(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
+                         Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                  bottom: 10, right: 40, left: 5),
+                              child: Text(
+                                widget.tanggal,
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme
@@ -262,7 +264,7 @@ class _rincianmerchState extends State<rincianmerch> {
                             Container(
                               padding: EdgeInsets.only(right: 100, bottom: 50),
                               child: Text(
-                                "IDR " + doc[index]["harga"],
+                                "IDR " + widget.harga,
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme
@@ -283,36 +285,17 @@ class _rincianmerchState extends State<rincianmerch> {
                               borderRadius: BorderRadius.circular(8)),
                           child: Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.only(
-                                  bottom: 10,
-                                ),
-                                child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.minimize_rounded,
-                                      color: Colors.black,
-                                      size: 15,
-                                    )),
-                              ),
+                              
                               Container(
                                 child: Text(
-                                  doc[index]["jumlah"].toString(),
+                                  "Qty: "+ widget.jumlah,
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 13,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
-                              Container(
-                                child: IconButton(
-                                    onPressed: () {},
-                                    icon: Icon(
-                                      Icons.add,
-                                      color: Colors.black,
-                                      size: 15,
-                                    )),
-                              ),
+                              
                             ],
                           ),
                         )
@@ -322,15 +305,6 @@ class _rincianmerchState extends State<rincianmerch> {
                 ],
               ),
             ),
-                        );
-                        }
-                        
-                    );
-                  }
-                  return CircularProgressIndicator();
-                }
-              ),
-            
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
               width: MediaQuery.of(context).size.width,
@@ -395,10 +369,10 @@ class _rincianmerchState extends State<rincianmerch> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 100, right: 10),
                       child: Text(
-                        "IDR " + widget.Menit,
+                        "IDR " + widget.harga,
                         style: TextStyle(
                             fontSize: 14,
-                            color: Colors.black,
+                            color: Color.fromARGB(255, 12, 10, 10),
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -459,7 +433,7 @@ class _rincianmerchState extends State<rincianmerch> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 46, right: 10),
                       child: Text(
-                        "IDR " + widget.Menit,
+                        "IDR " + widget.harga,
                         style: TextStyle(
                             fontSize: 17,
                             color: Colors.black,

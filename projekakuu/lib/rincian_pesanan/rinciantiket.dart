@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/detail/detailmerch.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,6 +19,8 @@ class rinciantiket extends StatefulWidget {
 }
 
 class _rinciantiketState extends State<rinciantiket> {
+  final _userStream =
+      FirebaseFirestore.instance.collection("belilangsungtiket").snapshots();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -156,6 +159,21 @@ class _rinciantiketState extends State<rinciantiket> {
               margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(color: Colors.grey[350]),
             ),
+            StreamBuilder(
+                stream: _userStream,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    var doc = snapshot.data!.docs;
+                    return ListView.builder(
+                        itemCount: doc.length,
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            
+                           
+                          },
+                         child:
             Container(
               child: Row(
                 children: [
@@ -272,6 +290,14 @@ class _rinciantiketState extends State<rinciantiket> {
                 ],
               ),
             ),
+             );
+                        }
+                        
+                    );
+                  }
+                  return CircularProgressIndicator();
+                }
+              ),
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
               width: MediaQuery.of(context).size.width,

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/ticket_page/ticket.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -21,6 +22,7 @@ class detailticket extends StatefulWidget {
 }
 
 class _detailticketState extends State<detailticket> {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +57,20 @@ class _detailticketState extends State<detailticket> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              onTap: () {
-                Navigator.push(
+              onTap: () async {
+    try {
+     
+        await _firestore.collection('belilangsungtiket').add({
+          'judul' : widget.Tempat,
+          'tanggal': widget.Tanggal,
+          'assets' : widget.Asset,
+          'harga': widget.Harga,
+          'jumlah': 1 ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+        await FirebaseFirestore.instance.collection('belilangsungtiket').doc('id').get();
+         Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => rinciantiket(
@@ -67,8 +81,19 @@ class _detailticketState extends State<detailticket> {
                               Harga: widget.Harga,
                               //  jumlah: 1
                             )));
-              },
+              
+       ;
+     
+      
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+      );
+    }
+  },
             ),
+
+         
             GestureDetector(
               child: Container(
                 height: 35,
@@ -88,6 +113,29 @@ class _detailticketState extends State<detailticket> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
+              onTap: () async {
+    try {
+     
+        await _firestore.collection('trolitiket').add({
+          'judul' : widget.Tempat,
+          'assets' : widget.Asset,
+          'tanggal': widget.Tanggal,
+          'harga': widget.Harga,
+          'jumlah': 1 ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Sukses menambahkan ke troli')),)
+       ;
+     
+      
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+      );
+    }
+  }
             )
           ],
         ),
