@@ -1,5 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_application_2/login/login.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../pengiriman/navAlamat.dart';
@@ -192,38 +194,45 @@ class _pageInfoState extends State<pageInfo> {
               ],
             ),
           ),
-          Container(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.only(bottom: 2),
-            decoration: BoxDecoration(
-              color: Colors.black,
-            ),
-            child: Row(
-              children: [
-                Padding(
-                    padding: EdgeInsets.only(left: 10),
-                    child: Text("Logout",
-                        style: GoogleFonts.radioCanada(
-                            textStyle: Theme.of(context).textTheme.displayLarge,
-                            fontSize: 15,
-                            color: Colors.white))),
-                Padding(
-                  padding: EdgeInsets.only(left: 245),
-                  child: IconButton(
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => pageNavAlamat()));
-                      },
-                      icon: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        size: 30,
-                        color: Color.fromRGBO(202, 31, 31, 1),
-                      )),
-                )
-              ],
+         
+          GestureDetector(
+            onTap: () {
+              FirebaseAuth.instance.signOut();
+              Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => pageLogin()));
+            },
+            child: Container(
+              height: 60,
+              width: MediaQuery.of(context).size.width,
+              margin: EdgeInsets.only(bottom: 2),
+              decoration: BoxDecoration(
+                color: Colors.black,
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                      padding: EdgeInsets.only(left: 10),
+                      child: Text("Logout",
+                          style: GoogleFonts.radioCanada(
+                              textStyle: Theme.of(context).textTheme.displayLarge,
+                              fontSize: 15,
+                              color: Colors.white))),
+                  Padding(
+                    padding: EdgeInsets.only(left: 245),
+                    child: IconButton(
+                        onPressed: () {
+                          
+                        },
+                        icon: Icon(
+                          Icons.logout_outlined,
+                          size: 30,
+                          color: Color.fromRGBO(202, 31, 31, 1),
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         ],

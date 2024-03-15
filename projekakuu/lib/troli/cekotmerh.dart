@@ -21,6 +21,11 @@ class detailekot extends StatefulWidget {
 }
 
 class _detailekotState extends State<detailekot> {
+   String _getCurrentTime() {
+    var time = DateTime.now();
+
+    return "${time.day.toString().padLeft(2, '0')}-${time.month.toString().padLeft(2, '0')}-${time.year.toString().padLeft(2, '0')},${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
+  }
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
@@ -84,8 +89,8 @@ class _detailekotState extends State<detailekot> {
           'judul' : widget.judul,
           'assets' : widget.assets,
           'harga': widget.harga,
-          'jumlah': widget.jumlah ,
-          'waktu_pembelian': DateTime.now(),
+          'jumlah': widget.jumlah , 
+          'waktu_pembelian': _getCurrentTime(),
           'id': widget.id
         });
          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));

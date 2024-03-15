@@ -14,7 +14,7 @@ class _pageLoginState extends State<pageLogin> {
   final _formkey = GlobalKey<FormState>(); 
   bool _isObscure = true;
   final TextEditingController _email = TextEditingController();
-      final TextEditingController _password = TextEditingController();
+  final TextEditingController _password = TextEditingController();
 
       signInWithEmailAndPassword() async  {
         try {

@@ -4,6 +4,8 @@ import 'package:flutter_application_2/detail/detailmerch.dart';
 import 'package:flutter_application_2/merch_page/merch_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../home/home.dart';
+
 class rincianmerch extends StatefulWidget {
   const rincianmerch({
     super.key,
@@ -20,6 +22,12 @@ class rincianmerch extends StatefulWidget {
 }
 
 class _rincianmerchState extends State<rincianmerch> {
+   String _getCurrentTime() {
+    var time = DateTime.now();
+
+    return "${time.day.toString().padLeft(2, '0')}-${time.month.toString().padLeft(2, '0')}-${time.year.toString().padLeft(2, '0')},${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
+  }
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   //  Future<void> _deleteData(BuildContext context) async {
   //   try {
       
@@ -99,6 +107,29 @@ class _rincianmerchState extends State<rincianmerch> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
+  //             onTap:() async {
+  //                try {
+     
+  //       await _firestore.collection('pembelian').add({
+  //         'judul' :["judul"],
+  //         'assets' :["assets"],
+  //         'harga': ["harga"],
+  //         'jumlah': ["jumlah"] , 
+  //         'waktu_pembelian': _getCurrentTime(),
+  //         'id': widget.id
+  //       });
+  //        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+  // print("object");
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         SnackBar(content: Text('pembelian sukses')),)
+  //      ;
+  //       } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+  //     );
+  //   }
+  
+  //             }, 
             )
           ],
         ),
@@ -120,7 +151,8 @@ class _rincianmerchState extends State<rincianmerch> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: ((context) => pageMerch())));
+                              builder: ((context) => pageMerch( 
+                                ))));
             } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

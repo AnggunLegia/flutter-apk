@@ -11,6 +11,11 @@ class detailriwayat extends StatefulWidget {
 }
 
 class _detailriwayatState extends State<detailriwayat> {
+   String _getCurrentTime() {
+    var time = DateTime.now();
+
+    return "${time.day.toString().padLeft(2, '0')}-${time.month.toString().padLeft(2, '0')}-${time.year.toString().padLeft(2, '0')},${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -333,10 +338,7 @@ class _detailriwayatState extends State<detailriwayat> {
                                     color: Colors.black),
                               ),
                             ),
-                           
-                          ],
-                        ),
-                         Container(
+                           Container(
                               padding: EdgeInsets.only( bottom: 50),
                               child: Text(
                                  widget.waktu_pembelian.toString(),
@@ -349,6 +351,9 @@ class _detailriwayatState extends State<detailriwayat> {
                                     color: Colors.black),
                               ),
                             ),
+                          ],
+                        ),
+                         
           ],
         ),
       ),
