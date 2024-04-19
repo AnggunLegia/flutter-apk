@@ -149,54 +149,39 @@ class _detailekotState extends State<detailekot> {
                       color: Colors.black,
                     ),
                   ),
+                  
+                  StreamBuilder(
+  stream: FirebaseFirestore.instance.collection("alamat").doc('uid').snapshots(),
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      if (snapshot.data!.exists) {
+        var data = snapshot.data!.data();
+        // Gunakan data yang Anda dapatkan untuk menampilkan informasi yang Anda inginkan
+        return 
+        Container( 
+          margin: EdgeInsets.only(top: 10),
+          child: Column(
+            children: [
+              Row(
+                children: [
                   Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 10),
-                              child: Text(
-                                "nama",
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.black),
-                              ),
-                            ),
-                            Container(
-                              padding: EdgeInsets.only(right: 120),
-                              child: Text(
-                                "083820087532",
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.black),
-                              ),
-                            )
-                          ],
-                        ),
-                        Container(
-                          child: Text(
-                            "kp. Bantar Gedang Rt 004/ Rw 009, Des. Mekarsari",
-                            style: TextStyle(fontSize: 10, color: Colors.black),
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            "Kec. Ngamprah, Kab. Bandung Barat, Jawa Barat",
-                            style: TextStyle(fontSize: 10, color: Colors.black),
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            "Rumah",
-                            style: TextStyle(fontSize: 10, color: Colors.black),
-                          ),
-                        )
-                      ],
+                    child: Text(data?['nama penerima']?.toString() ?? '')
                     ),
-                  )
                 ],
               ),
-            ),
+            ],
+          ));
+
+      } else {
+        return Text("Dokumen tidak ditemukan");
+      }
+    } else {
+      return Text("Data tidak tersedia");
+    }
+  },
+),
+
+                
             Container(
               width: MediaQuery.of(context).size.width,
               height: 4,
@@ -425,6 +410,6 @@ class _detailekotState extends State<detailekot> {
           ],
         ),
       ),
-    );
+          ])));
   }
 }

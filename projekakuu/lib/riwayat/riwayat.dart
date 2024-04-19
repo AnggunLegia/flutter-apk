@@ -45,11 +45,11 @@ class _riwayatpembelianState extends State<riwayatpembelian> {
                     MaterialPageRoute(
                         builder: (context) => detailriwayat(
                               waktu_pembelian: doc[index]["waktu_pembelian"].toString(),
-                              id: doc[index]["id_pembelian"],
+                              id_pembelian: doc[index]["id_pembelian"],
                               assets: doc[index]["assets"],
                               judul: doc[index]["judul"],
                               jumlah: doc[index]["jumlah"].toString(),
-                              harga: doc[index]["harga"],
+                              harga: doc[index]["harga"].toString(),
                               
                               //  jumlah: 1
                             )));

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class detailriwayat extends StatefulWidget {
-  const detailriwayat({super.key, required this.id, required this.assets, required this.judul, required this.harga, required this.jumlah, required this.waktu_pembelian});
+  const detailriwayat({super.key, required this.assets, required this.judul, required this.harga, required this.jumlah, required this.waktu_pembelian, required this.id_pembelian});
 
   @override
-  final String id;
+  final String id_pembelian;
   final String assets, judul, harga, jumlah, waktu_pembelian;
   State<detailriwayat> createState() => _detailriwayatState();
 }
@@ -137,7 +137,7 @@ class _detailriwayatState extends State<detailriwayat> {
                             Container(
                               padding: EdgeInsets.only(right: 100, bottom: 50),
                               child: Text(
-                                "IDR " + widget.harga,
+                                "IDR " + widget.harga.toString(),
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme
@@ -371,7 +371,7 @@ class _detailriwayatState extends State<detailriwayat> {
                            Container(
                               padding: EdgeInsets.only( bottom: 50),
                               child: Text(
-                                 widget.id.toString(),
+                                 widget.id_pembelian.toString(),
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme
