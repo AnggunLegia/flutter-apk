@@ -27,76 +27,120 @@ class _pageHomeState extends State<pageHome> {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
           color: Colors.black,
+          height: 100,
           child: Row(
             children: [
+               Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => pageHome()));
+                        },
+                        icon: Icon(
+                          Icons.home_outlined,
+                          color: Color.fromRGBO(202, 31, 31, 1),
+                          size: 30,
+                        )),
+                        Text("Beranda", 
+                          style: TextStyle(
+                            color: Color.fromRGBO(202, 31, 31, 1),
+                          ),),
+                  ],
+                ),
+              ),
+              
               Padding(
                 padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => trolimerch()));
-                    },
-                    icon: Icon(
-                      Icons.shopping_cart_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
+                child: Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => riwayatpembelian()));
+                        },
+                        icon: Icon(
+                          Icons.library_books_outlined,
+                          color: Color.fromRGBO(202, 31, 31, 1),
+                          size: 30,
+                        )),
+                      Text("Riwayat", 
+                          style: TextStyle(
+                            color: Color.fromRGBO(202, 31, 31, 1),
+                          ),),
+                        
+                  ],
+                ),
+              ),
+             
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => pageMerch()));
+                        },
+                        icon: Icon(
+                          Icons.message_outlined,
+                          color: Color.fromRGBO(202, 31, 31, 1),
+                          size: 30,
+                        )),
+                        Text("Chat Admin", 
+                          style: TextStyle(
+                            color: Color.fromRGBO(202, 31, 31, 1),
+                          ),),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => riwayatpembelian()));
-                    },
-                    icon: Icon(
-                      Icons.library_books_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageHome()));
-                    },
-                    icon: Icon(
-                      Icons.home_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => pageMerch()));
-                    },
-                    icon: Icon(
-                      Icons.message_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
+                child: Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => trolimerch()));
+                        },
+                        icon: Icon(
+                          Icons.shopping_cart_outlined,
+                          color: Color.fromRGBO(202, 31, 31, 1),
+                          size: 30,
+                        )),
+                        Text("Troli", 
+                          style: TextStyle(
+                            color: Color.fromRGBO(202, 31, 31, 1),
+                          ),),
+                  ],
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.only(
                   left: 10,
                 ),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => pageProfile()));
-                    },
-                    icon: Icon(
-                      Icons.person_2_outlined,
-                      color: Color.fromRGBO(202, 31, 31, 1),
-                      size: 35,
-                    )),
+                child: Column(
+                  children: [
+                    IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => pageProfile()));
+                        },
+                        icon: Icon(
+                          Icons.person_2_outlined,
+                          color: Color.fromRGBO(202, 31, 31, 1),
+                          size: 30,
+                        )),
+                        Text("Akun", 
+                          style: TextStyle(
+                            color: Color.fromRGBO(202, 31, 31, 1),
+                          ),),
+                  ],
+                ),
               ),
             ],
           )),
@@ -213,7 +257,7 @@ class _pageHomeState extends State<pageHome> {
                                 height: 40, width: 40),
                           ),
                           Text(
-                            "Ticket",
+                            "Tiket",
                             style: GoogleFonts.candal(
                               textStyle:
                                   Theme.of(context).textTheme.displayLarge,

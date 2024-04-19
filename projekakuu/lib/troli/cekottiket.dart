@@ -22,6 +22,36 @@ class detailcekottik extends StatefulWidget {
 }
 
 class _detailcekottikState extends State<detailcekottik> {
+  Future<void> addItem() async {
+     await _firestore.collection('pembelian').add({
+          'judul' : widget.judul,
+          'assets' : widget.assets,
+          'harga': widget.harga,
+          'jumlah': widget.jumlah ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+  //        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+  print("object");
+       
+  }
+  void deleteItem(){
+    try{
+   FirebaseFirestore.instance
+                          .collection('trolitiket')
+                          .doc(widget.id)
+                          .delete();
+                       print("succes apus"); 
+    }
+    catch(e){
+      print(e.toString());
+    }
+  }
+  void masukItem(){
+    addItem();
+    deleteItem();
+     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+  }
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
@@ -78,38 +108,9 @@ class _detailcekottikState extends State<detailcekottik> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              onTap: () async {
-                 try {
-     
-        await _firestore.collection('pembelian').add({
-          'judul' : widget.judul,
-          
-          'assets' : widget.assets,
-          'harga': widget.harga,
-          'jumlah': widget.jumlah ,
-          'waktu_pembelian': DateTime.now(),
-          'id': widget.id
-        });
-         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
-  print("object");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('pembelian sukses')),)
-       ;
-        } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
-      );
-    }
-    FirebaseFirestore.instance
-                          .collection('trolitiket')
-                          .doc(widget.id)
-                          .delete();
-                          ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Data berhasil dihapus'),
-        ),
-      );
-              },
+               onTap: () {
+                 masukItem();
+               },
             )
           ],
         ),

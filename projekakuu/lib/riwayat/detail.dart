@@ -306,7 +306,7 @@ class _detailriwayatState extends State<detailriwayat> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 46, right: 10),
                       child: Text(
-                        "IDR " + widget.harga,
+                        "IDR " + widget.harga.toString(),
                         style: TextStyle(
                             fontSize: 17,
                             color: Colors.black,
@@ -326,7 +326,7 @@ class _detailriwayatState extends State<detailriwayat> {
            Row(
                           children: [
                              Container(
-                              padding: EdgeInsets.only(right: 10, bottom: 50),
+                              padding: EdgeInsets.only(right: 10, bottom: 10),
                               child: Text(
                                  "Dipesan pada",
                                 style: GoogleFonts.radioCanada(
@@ -339,9 +339,39 @@ class _detailriwayatState extends State<detailriwayat> {
                               ),
                             ),
                            Container(
-                              padding: EdgeInsets.only( bottom: 50),
+                              padding: EdgeInsets.only( bottom: 10),
                               child: Text(
                                  widget.waktu_pembelian.toString(),
+                                style: GoogleFonts.radioCanada(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                             Container(
+                              padding: EdgeInsets.only(right: 10, bottom: 50),
+                              child: Text(
+                                 "ID Pesanan",
+                                style: GoogleFonts.radioCanada(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                            ),
+                           Container(
+                              padding: EdgeInsets.only( bottom: 50),
+                              child: Text(
+                                 widget.id.toString(),
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme

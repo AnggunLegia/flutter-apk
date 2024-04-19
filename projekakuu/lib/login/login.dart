@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/home/home.dart';
 import 'package:flutter_application_2/login/resgitrasi.dart';
+import 'package:uuid/v4.dart';
 
 class pageLogin extends StatefulWidget {
   const pageLogin({super.key});

@@ -36,10 +36,11 @@ class _pageRegisState extends State<pageRegis> {
 
  ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
-    content: Text(e.toString())
+    content: Text("maaf email sudah terdaftar")
     ),
+    
     );
-
+Navigator.push(context, MaterialPageRoute(builder: (_)=>pageRegis()));
   
   
 }

@@ -104,8 +104,7 @@ class _detailmerchState extends State<detailmerch> {
                       color: Colors.amber[600],
                       borderRadius: BorderRadius.circular(15),
                     ),
-                child: ElevatedButton(
-                  
+               
                    
                    
                       child: Text(
@@ -118,27 +117,21 @@ class _detailmerchState extends State<detailmerch> {
                   
                     
                   
-                  onPressed:  _beli,
+                    
                     
                 
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(Size(120, 35)),
-                    maximumSize: MaterialStateProperty.all(Size(120, 35)),
-                    backgroundColor: MaterialStateProperty.all(Colors.amber[600],) ,
-              
-                  ),
+                
                 ),
+                onTap: _beli,
               ),
-              
-            ),
+          
             GestureDetector(
               child: Container(
                 height: 35,
                 width: 130,
                
                   padding: EdgeInsets.only(top: 10, left: 10),
-                  child: ElevatedButton(
-                    onPressed: _troli,
+                  
                     child: Text(
                       "TAMBAH KE TROLI",
                       style: GoogleFonts.radioCanada(
@@ -146,13 +139,14 @@ class _detailmerchState extends State<detailmerch> {
                           fontSize: 12,
                           color: Colors.white),
                     ),
-                  ),
+                  
               
                 decoration: BoxDecoration(
                   color: Colors.red[800],
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
+              onTap: _troli,
             )
           ],
         ),

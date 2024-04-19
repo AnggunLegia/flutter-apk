@@ -1,30 +1,53 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_2/detail/detailmerch.dart';
-import 'package:flutter_application_2/troli/trolimerch.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../home/home.dart';
 
-class detailekot extends StatefulWidget {
-  const detailekot({
+class rincianTiket2 extends StatefulWidget {
+  const rincianTiket2({
     super.key,
     
     required this.id,
      required this.assets, required this.judul, required this.harga, required this.jumlah,
+     required this.tanggal
   });
   final String id;
-  final String assets, judul, harga, jumlah;
-
+  final String assets, judul, harga, jumlah, tanggal;
   @override
-  State<detailekot> createState() => _detailekotState();
+  State<rincianTiket2> createState() => _rincianTiket2State();
 }
 
-class _detailekotState extends State<detailekot> {
-   String _getCurrentTime() {
-    var time = DateTime.now();
-
-    return "${time.day.toString().padLeft(2, '0')}-${time.month.toString().padLeft(2, '0')}-${time.year.toString().padLeft(2, '0')},${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
+class _rincianTiket2State extends State<rincianTiket2> {
+   Future<void> addItem() async {
+     await _firestore.collection('pembelian').add({
+          'judul' : widget.judul,
+          'assets' : widget.assets,
+          'harga': widget.harga,
+          'jumlah': widget.jumlah ,
+          'waktu_pembelian': DateTime.now(),
+          'id': widget.id
+        });
+  //        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+  print("object");
+       
+  }
+  void deleteItem(){
+    try{
+   FirebaseFirestore.instance
+                          .collection('trolitiket')
+                          .doc(widget.id)
+                          .delete();
+                       print("succes apus"); 
+    }
+    catch(e){
+      print(e.toString());
+    }
+  }
+  void masukItem(){
+    addItem();
+    deleteItem();
+     Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
   }
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
@@ -82,30 +105,9 @@ class _detailekotState extends State<detailekot> {
                   borderRadius: BorderRadius.circular(15),
                 ),
               ),
-              onTap: () async {
-                 try {
-     
-        await _firestore.collection('pembelian').add({
-          'judul' : widget.judul,
-          'assets' : widget.assets,
-          'harga': widget.harga,
-          'jumlah': widget.jumlah , 
-          'waktu_pembelian': _getCurrentTime(),
-          'id_pembelian': widget.id,
-          'kategori' : "Merch"
-        });
-         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
-  print("object");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('pembelian sukses')),)
-       ;
-        } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
-      );
-    }
-  
-              },
+               onTap: () {
+                 masukItem();
+               },
             )
           ],
         ),
@@ -226,6 +228,24 @@ class _detailekotState extends State<detailekot> {
                                   bottom: 10, right: 40, left: 5),
                               child: Text(
                                 widget.judul,
+                                style: GoogleFonts.radioCanada(
+                                    textStyle: Theme.of(context)
+                                        .textTheme
+                                        .displayLarge,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black),
+                              ),
+                            ),
+                          ],
+                        ),
+                         Row(
+                          children: [
+                            Container(
+                              padding: EdgeInsets.only(
+                                  bottom: 10, right: 40, left: 5),
+                              child: Text(
+                                widget.tanggal,
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme

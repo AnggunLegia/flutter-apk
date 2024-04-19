@@ -34,7 +34,7 @@ class _pageTicketState extends State<pageTicket> {
             children: [
               Container(
                 child: Text(
-                  "Ticket",
+                  "Tiket",
                   style: GoogleFonts.radioCanada(
                       textStyle: Theme.of(context).textTheme.displayLarge,
                       fontSize: 25,
@@ -154,6 +154,8 @@ class _pageTicketState extends State<pageTicket> {
                                                       '',
                                                   Tanggal: data["Tanggal"]
                                                           ?.toString() ??
+                                                      '',
+                                                  Jumlah: data["jumlah"]?.toString() ??
                                                       '',
                                                 )));
                                   });
