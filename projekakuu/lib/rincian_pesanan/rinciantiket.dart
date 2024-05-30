@@ -36,6 +36,7 @@ class _rinciantiketState extends State<rinciantiket> {
   final _formkey = GlobalKey<FormState>();
   final TextEditingController _namapenerima = TextEditingController();
   final TextEditingController _email = TextEditingController();
+  final TextEditingController _notelp = TextEditingController();
     String _getCurrentTime() {
     var time = DateTime.now();
 
@@ -95,7 +96,8 @@ Future<void> deleteDocumentAndNavigateBack() async {
           'id_pembelian': widget.id,
           'kategori' : "Tiket",
           'nama_penerima': _namapenerima.text,
-          'alamat_penerima': _email.text
+          'alamat_penerima': _email.text,
+        
         });
   //        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
   print("object");
@@ -171,8 +173,10 @@ Future<void> deleteDocumentAndNavigateBack() async {
           'waktu_pembelian': _getCurrentTime(),
           'id_pembelian': widget.id,
           'kategori' : "Tiket",
-          'nama_penerima': _namapenerima.text,
-          'alamat_penerima': _email.text
+          'nama_penerima1': _namapenerima.text,
+          'alamat_penerima1': _email.text,
+          'no_telp1': _notelp.text,
+          'kategori_alamat1': "Alamat E-mail"
         });
   //        Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
   print("object");
@@ -432,6 +436,37 @@ Future<void> deleteDocumentAndNavigateBack() async {
                   padding:
                       const EdgeInsets.only(left: 20, right: 20, bottom: 20),
                   child: TextFormField(
+                    controller: _notelp,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'No Telepon kosong';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Contoh: 083xxx",
+                      labelText: "No Telepon",
+                      labelStyle: TextStyle(
+                          fontSize: 20,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                      //  icon: Icon(Icons.apartment_rounded),
+                      border: OutlineInputBorder(
+                          borderRadius: new BorderRadius.circular(10.0),
+                          borderSide:
+                              BorderSide(width: 2, color: Colors.black)),
+
+                      filled: true,
+                      fillColor: Colors.white,
+                    ),
+                  ),
+                ),
+             
+              
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
+                  child: TextFormField(
                     controller: _email,
                     keyboardType: TextInputType.emailAddress,
                     validator: (value) {
@@ -540,7 +575,7 @@ Future<void> deleteDocumentAndNavigateBack() async {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10, right: 50),
                       child: Text(
-                        "Subtotal (1 barang)",
+                        "Subtotal ($jumlahBarang barang)",
                         style: TextStyle(
                             fontSize: 14,
                             color: Colors.black,

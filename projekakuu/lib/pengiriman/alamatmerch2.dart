@@ -1,23 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/pengiriman/alamat.dart';
+import 'package:flutter_application_2/pengiriman/alamatmerh.dart';
+import 'package:flutter_application_2/pengiriman/alamatnav2.dart';
 import 'package:flutter_application_2/pengiriman/detailAlamat.dart';
+import 'package:flutter_application_2/pengiriman/editalamat.dart';
 import 'package:flutter_application_2/pengiriman/selectTambah.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../profile/profile.dart';
 import 'navAlamatTik.dart';
 
-class pageNavAlamat extends StatefulWidget {
-  const pageNavAlamat({
-    super.key,
+class pageNavAlamatRincian extends StatefulWidget {
+  const pageNavAlamatRincian({
+    super.key, required this.id, required this.Asset, required this.Judul, required this.Menit,
   });
-
+   final String id;
+  final String Asset, Judul, Menit;
   @override
-  State<pageNavAlamat> createState() => _pageNavAlamatState();
+  State<pageNavAlamatRincian> createState() => _pageNavAlamatRincianState();
 }
 
-class _pageNavAlamatState extends State<pageNavAlamat> {
+class _pageNavAlamatRincianState extends State<pageNavAlamatRincian> {
   final _userStream =
       FirebaseFirestore.instance.collection("alamat").snapshots();
   @override
@@ -38,13 +42,13 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
               ),
             ],
           ),
-          leading: BackButton(
-            color: Color.fromRGBO(202, 31, 31, 1),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => pageProfile()));
-            },
-          ),
+          // leading: BackButton(
+          //   color: Color.fromRGBO(202, 31, 31, 1),
+          //   onPressed: () {
+          //     // Navigator.push(context,
+          //     //     MaterialPageRoute(builder: (context) => pageProfile()));
+          //   },
+          // ),
           toolbarHeight: 60,
           backgroundColor: Colors.black,
         ),
@@ -74,7 +78,12 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => pageAlamat()));
+                          builder: (context) => pageAlamatNav2(
+                          Asset: widget.Asset,
+                          Judul: widget.Judul,
+                          Menit: widget.Menit,
+                          id: widget.id,
+                          )));
                 },
               ),
               // Row(
@@ -98,7 +107,7 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
               //       ),
               //       onTap: () {
               //         Navigator.push(context,
-              //             MaterialPageRoute(builder: (_) => pageNavAlamat()));
+              //             MaterialPageRoute(builder: (_) => pageNavAlamatRincian()));
               //       },
               //     ),
               //     GestureDetector(
@@ -141,7 +150,11 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => pageDetailAlamat(
+                                        builder: (context) => pageDetailAlamat2(
+                                        Asset: widget.Asset,
+                                        Judul: widget.Judul,
+                                        Menit: widget.Menit,
+                                        uid: widget.id,
                                               id: doc[index]['uid'],
                                               namaPenerima: doc[index]
                                                   ['nama penerima'],
@@ -275,11 +288,56 @@ class _pageNavAlamatState extends State<pageNavAlamat> {
                                                 ],
                                               ),
                                             ),
+
                                           ],
                                         ),
                                       ],
                                     ),
                                   ),
+                                   GestureDetector(
+                                    onTap: () {
+                                       Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => rincianmerchAlamat(
+                                              id_alamat: doc[index]['uid'],
+                                              namaPenerima: doc[index]
+                                                  ['nama penerima'],
+                                              notelp: doc[index]['notelp'],
+                                              
+                                              alamatlengkap: doc[index]
+                                                  ['alamat lengkap'],
+                                              kategoriAlamat: doc[index]
+                                                  ['kategori alamat'],
+                                                  Asset: widget.Asset,
+                                                  Judul: widget.Judul,
+                                                  Menit: widget.Menit,
+                                                  id: widget.id,
+                                            )));
+                                    },
+                                     child: Container(
+                                         child: Row(
+                                         children: [
+                                       Container(
+                                          margin: EdgeInsets.only(left:320, top: 5, bottom: 5 ),
+                                          padding: EdgeInsets.only(left: 10, top: 5),
+                                          width: 70,
+                                          height: 25,
+                                          child: Text("Gunakan Alamat", 
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 12
+                                          ),),
+                                          decoration: BoxDecoration(
+                                            color: Color.fromRGBO(202, 31, 31, 1),
+                                            borderRadius: BorderRadius.circular(10)
+                                          ) ,
+                                        ),
+                                      
+                                                                     ],
+                                                                   ),
+                                                                 ),
+                                   ),
                                 ],
                               ));
                         });

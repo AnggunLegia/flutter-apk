@@ -50,7 +50,10 @@ class _riwayatpembelianState extends State<riwayatpembelian> {
                               judul: doc[index]["judul"],
                               jumlah: doc[index]["jumlah"].toString(),
                               harga: doc[index]["harga"].toString(),
-                              
+                              alamat_penerima1: doc[index]["alamat_penerima1"],
+                              nama_penerima1: doc[index]["nama_penerima1"],
+                              kategori_alamat1: doc[index]["kategori_alamat1"],
+                              notelp1: doc[index]["no_telp1"],
                               //  jumlah: 1
                             )));
                            

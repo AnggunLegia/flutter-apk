@@ -3,16 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_2/detail/detailmerch.dart';
 import 'package:flutter_application_2/troli/trolimerch.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 import '../home/home.dart';
 
 class detailekot extends StatefulWidget {
   const detailekot({
-    super.key,
-    
+    Key? key,
     required this.id,
-     required this.assets, required this.judul, required this.harga, required this.jumlah,
-  });
+    required this.assets,
+    required this.judul,
+    required this.harga,
+    required this.jumlah,
+  }) : super(key: key);
+
   final String id;
   final String assets, judul, harga, jumlah;
 
@@ -21,14 +25,41 @@ class detailekot extends StatefulWidget {
 }
 
 class _detailekotState extends State<detailekot> {
-   String _getCurrentTime() {
+  // late String _hargaFormatted; // Menyimpan harga yang diformat
+
+  @override
+//   void initState() {
+//     super.initState();
+//     _hargaFormatted = formatHarga(widget.harga, widget.jumlah);
+//   }
+
+//   String formatHarga(String harga, String jumlah) {
+//   // Hilangkan tanda titik dari string harga
+//   harga = harga.replaceAll('.', '');
+  
+//   int hargaInt = int.parse(harga);
+//   int jumlahInt = int.parse(jumlah);
+//   return NumberFormat.currency(
+//     locale: 'id',
+//     symbol: 'Rp',
+//     decimalDigits: 0,
+//   ).format(hargaInt * jumlahInt);
+// }
+
+
+  String _getCurrentTime() {
     var time = DateTime.now();
 
     return "${time.day.toString().padLeft(2, '0')}-${time.month.toString().padLeft(2, '0')}-${time.year.toString().padLeft(2, '0')},${time.hour.toString().padLeft(2, '0')}:${time.minute.toString().padLeft(2, '0')}:${time.second.toString().padLeft(2, '0')}";
   }
+
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  // Getter untuk harga yang diformat
+    // String get hargaFormatted => _hargaFormatted;
   @override
   Widget build(BuildContext context) {
+    // Getter untuk harga yang diformat
+    
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
@@ -42,9 +73,10 @@ class _detailekotState extends State<detailekot> {
                 child: Text(
                   "Total",
                   style: GoogleFonts.radioCanada(
-                      textStyle: Theme.of(context).textTheme.displayLarge,
-                      fontSize: 17,
-                      color: Colors.white),
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 17,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -54,11 +86,12 @@ class _detailekotState extends State<detailekot> {
               child: Padding(
                 padding: EdgeInsets.only(top: 10, left: 14),
                 child: Text(
-                  widget.harga,
+                  widget.harga.toString(),
                   style: GoogleFonts.radioCanada(
-                      textStyle: Theme.of(context).textTheme.displayLarge,
-                      fontSize: 17,
-                      color: Colors.white),
+                    textStyle: Theme.of(context).textTheme.displayLarge,
+                    fontSize: 17,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -72,9 +105,10 @@ class _detailekotState extends State<detailekot> {
                   child: Text(
                     "Check Out",
                     style: GoogleFonts.radioCanada(
-                        textStyle: Theme.of(context).textTheme.displayLarge,
-                        fontSize: 17,
-                        color: Colors.white),
+                      textStyle: Theme.of(context).textTheme.displayLarge,
+                      fontSize: 17,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
                 decoration: BoxDecoration(
@@ -83,28 +117,27 @@ class _detailekotState extends State<detailekot> {
                 ),
               ),
               onTap: () async {
-                 try {
-     
-        await _firestore.collection('pembelian').add({
-          'judul' : widget.judul,
-          'assets' : widget.assets,
-          'harga': widget.harga,
-          'jumlah': widget.jumlah , 
-          'waktu_pembelian': _getCurrentTime(),
-          'id_pembelian': widget.id,
-          'kategori' : "Merch"
-        });
-         Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
-  print("object");
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('pembelian sukses')),)
-       ;
-        } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
-      );
-    }
-  
+                try {
+                  await _firestore.collection('pembelian').add({
+                    'judul': widget.judul,
+                    'assets': widget.assets,
+                    'harga': widget.harga,
+                    'jumlah': widget.jumlah,
+                    'waktu_pembelian': _getCurrentTime(),
+                    'id_pembelian': widget.id,
+                    'kategori': "Merch"
+                  });
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (BuildContext context) => pageHome()));
+                  print("object");
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('pembelian sukses')),
+                  );
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Terjadi kesalahan, silakan coba lagi')),
+                  );
+                }
               },
             )
           ],
@@ -125,8 +158,6 @@ class _detailekotState extends State<detailekot> {
           //             //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
           //             //   _formkey.currentState!.validate();
           //           },
-          
-          
         ),
         backgroundColor: Colors.black,
         title: Text(
@@ -149,39 +180,9 @@ class _detailekotState extends State<detailekot> {
                       color: Colors.black,
                     ),
                   ),
-                  
-                  StreamBuilder(
-  stream: FirebaseFirestore.instance.collection("alamat").doc('uid').snapshots(),
-  builder: (context, snapshot) {
-    if (snapshot.hasData) {
-      if (snapshot.data!.exists) {
-        var data = snapshot.data!.data();
-        // Gunakan data yang Anda dapatkan untuk menampilkan informasi yang Anda inginkan
-        return 
-        Container( 
-          margin: EdgeInsets.only(top: 10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    child: Text(data?['nama penerima']?.toString() ?? '')
-                    ),
                 ],
               ),
-            ],
-          ));
-
-      } else {
-        return Text("Dokumen tidak ditemukan");
-      }
-    } else {
-      return Text("Data tidak tersedia");
-    }
-  },
-),
-
-                
+            ),
             Container(
               width: MediaQuery.of(context).size.width,
               height: 4,
@@ -196,9 +197,11 @@ class _detailekotState extends State<detailekot> {
                     width: 150,
                     height: 150,
                     decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: NetworkImage(widget.assets),
-                            fit: BoxFit.cover)),
+                      image: DecorationImage(
+                        image: NetworkImage(widget.assets),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                   Container(
                     margin: EdgeInsets.only(top: 10, bottom: 5),
@@ -207,17 +210,15 @@ class _detailekotState extends State<detailekot> {
                         Row(
                           children: [
                             Container(
-                              padding: EdgeInsets.only(
-                                  bottom: 10, right: 40, left: 5),
+                              padding: EdgeInsets.only(bottom: 10, right: 40, left: 5),
                               child: Text(
                                 widget.judul,
                                 style: GoogleFonts.radioCanada(
-                                    textStyle: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                  textStyle: Theme.of(context).textTheme.displayLarge,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ],
@@ -227,14 +228,13 @@ class _detailekotState extends State<detailekot> {
                             Container(
                               padding: EdgeInsets.only(right: 100, bottom: 50),
                               child: Text(
-                                "IDR " + widget.harga,
+                                "IDR " + widget.harga.toString(),
                                 style: GoogleFonts.radioCanada(
-                                    textStyle: Theme.of(context)
-                                        .textTheme
-                                        .displayLarge,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black),
+                                  textStyle: Theme.of(context).textTheme.displayLarge,
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black,
+                                ),
                               ),
                             ),
                           ],
@@ -244,24 +244,24 @@ class _detailekotState extends State<detailekot> {
                           width: 100,
                           margin: EdgeInsets.only(left: 50),
                           decoration: BoxDecoration(
-                              color: Colors.black12,
-                              borderRadius: BorderRadius.circular(8)),
+                            color: Colors.black12,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
                           child: Row(
                             children: [
-                              
                               Container(
                                 child: Text(
-                                  "Qty: "+ widget.jumlah,
+                                  "Qty: " + widget.jumlah,
                                   style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.bold),
+                                    color: Colors.black,
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
-                              
                             ],
                           ),
-                        )
+                        ),
                       ],
                     ),
                   )
@@ -275,7 +275,6 @@ class _detailekotState extends State<detailekot> {
               decoration: BoxDecoration(color: Colors.grey[350]),
             ),
             Container(
-              // margin: EdgeInsets.only(top: 10),
               child: Row(
                 children: [
                   Padding(
@@ -287,22 +286,26 @@ class _detailekotState extends State<detailekot> {
                     ),
                   ),
                   Padding(
-                      padding: EdgeInsets.only(left: 10),
-                      child: Text("CARA PEMBAYARAN",
-                          style: GoogleFonts.radioCanada(
-                              textStyle:
-                                  Theme.of(context).textTheme.displayLarge,
-                              fontSize: 15,
-                              color: Colors.black))),
+                    padding: EdgeInsets.only(left: 10),
+                    child: Text(
+                      "CARA PEMBAYARAN",
+                      style: GoogleFonts.radioCanada(
+                        textStyle: Theme.of(context).textTheme.displayLarge,
+                        fontSize: 15,
+                        color: Colors.black,
+                      ),
+                    ),
+                  ),
                   Padding(
                     padding: EdgeInsets.only(left: 110),
                     child: IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 20,
-                          color: Colors.black,
-                        )),
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        size: 20,
+                        color: Colors.black,
+                      ),
+                    ),
                   )
                 ],
               ),
@@ -322,9 +325,10 @@ class _detailekotState extends State<detailekot> {
                       child: Text(
                         "Subtotal (1 barang)",
                         style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -332,11 +336,12 @@ class _detailekotState extends State<detailekot> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 100, right: 10),
                       child: Text(
-                        "IDR " + widget.harga,
+                        "IDR " + widget.harga.toString(),
                         style: TextStyle(
-                            fontSize: 14,
-                            color: Color.fromARGB(255, 12, 10, 10),
-                            fontWeight: FontWeight.bold),
+                          fontSize: 14,
+                          color: Color.fromARGB(255, 12, 10, 10),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -347,25 +352,28 @@ class _detailekotState extends State<detailekot> {
               child: Row(
                 children: [
                   Container(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 110),
-                    child: Text(
-                      "Biaya Pengiriman",
-                      style: TextStyle(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 110),
+                      child: Text(
+                        "Biaya Pengiriman",
+                        style: TextStyle(
                           fontSize: 14,
                           color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  )),
+                  ),
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 60, right: 10),
                       child: Text(
                         "IDR 18000",
                         style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 14,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -382,25 +390,28 @@ class _detailekotState extends State<detailekot> {
               child: Row(
                 children: [
                   Container(
-                      child: Padding(
-                    padding: const EdgeInsets.only(left: 10, right: 75),
-                    child: Text(
-                      "Total Pembayaran",
-                      style: TextStyle(
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10, right: 75),
+                      child: Text(
+                        "Total Pembayaran",
+                        style: TextStyle(
                           fontSize: 17,
                           color: Colors.black,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
-                  )),
+                  ),
                   Container(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 46, right: 10),
                       child: Text(
-                        "IDR " + widget.harga,
+                        "IDR " +widget.harga.toString(),
                         style: TextStyle(
-                            fontSize: 17,
-                            color: Colors.black,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 17,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -410,6 +421,6 @@ class _detailekotState extends State<detailekot> {
           ],
         ),
       ),
-          ])));
+    );
   }
 }

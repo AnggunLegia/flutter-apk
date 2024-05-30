@@ -1,19 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/pengiriman/alamatmerch2.dart';
 import 'package:flutter_application_2/profile/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
 import 'navAlamat.dart';
 
-class pageAlamat extends StatefulWidget {
-  const pageAlamat({super.key});
-
+class pageAlamatNav2 extends StatefulWidget {
+  const pageAlamatNav2({super.key, required this.id, required this.Asset, required this.Judul, required this.Menit});
+final String id;
+  final String Asset, Judul, Menit;
   @override
-  State<pageAlamat> createState() => _pageAlamatState();
+  State<pageAlamatNav2> createState() => _pageAlamatNav2State();
 }
 
-class _pageAlamatState extends State<pageAlamat> {
+class _pageAlamatNav2State extends State<pageAlamatNav2> {
   final _formkey = GlobalKey<FormState>();
   final TextEditingController _namapenerima = TextEditingController();
   final TextEditingController _notelp = TextEditingController();
@@ -32,7 +34,12 @@ class _pageAlamatState extends State<pageAlamat> {
         "kategori alamat": _kategorialmat.text,
       });
       Navigator.push(
-          context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
+          context, MaterialPageRoute(builder: (_) => pageNavAlamatRincian(
+            Asset: widget.Asset,
+            Judul: widget.Judul,
+            Menit: widget.Menit,
+            id: widget.id,
+          )));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
@@ -45,9 +52,8 @@ class _pageAlamatState extends State<pageAlamat> {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-          
           child: Text(
-            "Add Address",
+            "TAMBAH ALAMAT",
             style: GoogleFonts.radioCanada(
                 textStyle: Theme.of(context).textTheme.displayLarge,
                 fontSize: 20,
@@ -205,7 +211,7 @@ class _pageAlamatState extends State<pageAlamat> {
                       //   _formkey.currentState!.validate();
                     },
                     child: Text(
-                      "Add Address",
+                      "TAMBAH ALAMAT MERCH",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),

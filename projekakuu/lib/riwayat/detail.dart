@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class detailriwayat extends StatefulWidget {
-  const detailriwayat({super.key, required this.assets, required this.judul, required this.harga, required this.jumlah, required this.waktu_pembelian, required this.id_pembelian});
+  const detailriwayat({super.key, required this.assets, required this.judul, required this.harga, required this.jumlah, required this.waktu_pembelian, required this.id_pembelian, required this.nama_penerima1, required this.alamat_penerima1, required this.notelp1, required this.kategori_alamat1});
 
   @override
   final String id_pembelian;
-  final String assets, judul, harga, jumlah, waktu_pembelian;
+  final String assets, judul, harga, jumlah, waktu_pembelian, nama_penerima1, alamat_penerima1, notelp1, kategori_alamat1;
   State<detailriwayat> createState() => _detailriwayatState();
 }
 
@@ -53,7 +53,7 @@ class _detailriwayatState extends State<detailriwayat> {
                             Container(
                               padding: EdgeInsets.only(right: 10),
                               child: Text(
-                                "nama",
+                                widget.nama_penerima1,
                                 style: TextStyle(
                                     fontSize: 10, color: Colors.black),
                               ),
@@ -61,7 +61,7 @@ class _detailriwayatState extends State<detailriwayat> {
                             Container(
                               padding: EdgeInsets.only(right: 120),
                               child: Text(
-                                "083820087532",
+                                widget.notelp1,
                                 style: TextStyle(
                                     fontSize: 10, color: Colors.black),
                               ),
@@ -70,19 +70,14 @@ class _detailriwayatState extends State<detailriwayat> {
                         ),
                         Container(
                           child: Text(
-                            "kp. Bantar Gedang Rt 004/ Rw 009, Des. Mekarsari",
+                            widget.alamat_penerima1,
                             style: TextStyle(fontSize: 10, color: Colors.black),
                           ),
                         ),
+                        
                         Container(
                           child: Text(
-                            "Kec. Ngamprah, Kab. Bandung Barat, Jawa Barat",
-                            style: TextStyle(fontSize: 10, color: Colors.black),
-                          ),
-                        ),
-                        Container(
-                          child: Text(
-                            "Rumah",
+                            widget.kategori_alamat1,
                             style: TextStyle(fontSize: 10, color: Colors.black),
                           ),
                         )

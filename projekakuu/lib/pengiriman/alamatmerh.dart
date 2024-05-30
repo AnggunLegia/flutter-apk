@@ -2,27 +2,40 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_2/detail/detailmerch.dart';
 import 'package:flutter_application_2/merch_page/merch_page.dart';
-import 'package:flutter_application_2/pengiriman/alamatmerch2.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../home/home.dart';
+import 'alamatmerch2.dart';
 
-class rincianmerch extends StatefulWidget {
-  const rincianmerch({
+class rincianmerchAlamat extends StatefulWidget {
+  const rincianmerchAlamat({
     super.key,
     required this.Asset,
     required this.Judul,
     required this.id,
     required this.Menit,
+    required this.namaPenerima,
+      required this.notelp,
+      
+      required this.id_alamat,
+      
+      required this.alamatlengkap,
+      required this.kategoriAlamat
   });
   final String id;
   final String Asset, Judul, Menit;
+  final String id_alamat;
+  final String namaPenerima,
+      notelp,
+     
+      alamatlengkap,
+      kategoriAlamat;
 
   @override
-  State<rincianmerch> createState() => _rincianmerchState();
+  State<rincianmerchAlamat> createState() => _rincianmerchAlamatState();
 }
 
-class _rincianmerchState extends State<rincianmerch> {
+class _rincianmerchAlamatState extends State<rincianmerchAlamat> {
   int jumlahBarang = 1; // Variabel untuk menyimpan jumlah barang yang dipilih
   int hargaPerBarang = 0; // Harga per barang
 
@@ -66,7 +79,10 @@ class _rincianmerchState extends State<rincianmerch> {
   @override
   
   Widget build(BuildContext context) {
-     int totalHarga = hargaPerBarang * jumlahBarang;
+    
+     int ongkir = 18000;
+     int total = hargaPerBarang * jumlahBarang;
+    int totalHarga = total + ongkir ;
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.black,
@@ -129,7 +145,13 @@ class _rincianmerchState extends State<rincianmerch> {
           'harga': totalHarga,
           'jumlah': jumlahBarang , 
           'waktu_pembelian': _getCurrentTime(),
-          'id_pembelian': widget.id
+          'kategori': "merch",
+          'id_pembelian': widget.id,
+          'nama_penerima1': widget.namaPenerima,
+          'alamat_penerima1': widget.alamatlengkap,
+          'no_telp1': widget.notelp,
+          'kategori_alamat1': widget.kategoriAlamat
+          
         });
          Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
   print("object");
@@ -188,56 +210,70 @@ class _rincianmerchState extends State<rincianmerch> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 10, top: 10),
-              child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 50, left: 20),
-                    child: Icon(
-                      Icons.location_on_outlined,
-                      size: 35,
-                      color: Colors.black,
+            GestureDetector(
+              onTap: () {
+                 Navigator.push(
+          context, MaterialPageRoute(builder: (_) => pageNavAlamatRincian(
+           Asset: widget.Asset,
+            Judul: widget.Judul,
+            Menit: widget.Menit,
+            id: widget.id,
+          )));
+              },
+              child: Container(
+                margin: EdgeInsets.only(bottom: 10, top: 10),
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(right: 50, left: 20),
+                      child: Icon(
+                        Icons.location_on_outlined,
+                        size: 35,
+                        color: Colors.black,
+                      ),
                     ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(right: 10),
-                              child: Text(
-                                "Pilih Alamat",
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.black),
+                    Container(
+                      margin: EdgeInsets.only(top: 10),
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.only(right: 10),
+                                child: Text(
+                                  widget.namaPenerima,
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.black),
+                                ),
                               ),
+                              Container(
+                                padding: EdgeInsets.only(right: 120),
+                                child: Text(
+                                  widget.notelp,
+                                  style: TextStyle(
+                                      fontSize: 10, color: Colors.black),
+                                ),
+                              )
+                            ],
+                          ),
+                          Container(
+                            child: Text(
+                              widget.alamatlengkap,
+                              style: TextStyle(fontSize: 10, color: Colors.black),
                             ),
-                            Padding(
-                    padding: EdgeInsets.only(left: 110),
-                    child: IconButton(
-                        onPressed: () {
-                           Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => pageNavAlamatRincian(
-                                        Asset: widget.Asset,
-                                              id: widget.id,
-                                              Judul: widget.Judul,
-                                              Menit: widget.Menit,
-                                            )));
-                        },
-                        icon: Icon(
-                          Icons.arrow_forward_ios_rounded,
-                          size: 20,
-                          color: Colors.black,
-                        )),
-                  )
-                      ],
-                    ),
-                ])
-              )],
+                          ),
+                          
+                          Container(
+                            child: Text(
+                              widget.kategoriAlamat,
+                              style: TextStyle(fontSize: 10, color: Colors.black),
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
             Container(
@@ -246,8 +282,7 @@ class _rincianmerchState extends State<rincianmerch> {
               margin: EdgeInsets.only(bottom: 10),
               decoration: BoxDecoration(color: Colors.grey[350]),
             ),
-          
-               Container(
+           Container(
               child: Row(
                 children: [
                   Container(
@@ -286,7 +321,7 @@ class _rincianmerchState extends State<rincianmerch> {
                             Container(
                               padding: EdgeInsets.only(right: 100, bottom: 50),
                               child: Text(
-                                "IDR " + widget.Menit,
+                                "IDR "+ widget.Menit,
                                 style: GoogleFonts.radioCanada(
                                     textStyle: Theme.of(context)
                                         .textTheme
@@ -357,7 +392,7 @@ class _rincianmerchState extends State<rincianmerch> {
                 ],
               ),
             ),
-                       
+                   
             
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10),
@@ -487,7 +522,7 @@ class _rincianmerchState extends State<rincianmerch> {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 46, right: 10),
                       child: Text(
-                        "IDR $totalHarga",
+                        "IDR $totalHarga" ,
                         style: TextStyle(
                             fontSize: 17,
                             color: Colors.black,

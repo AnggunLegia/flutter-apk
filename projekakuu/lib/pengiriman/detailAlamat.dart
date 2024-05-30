@@ -11,20 +11,15 @@ class pageDetailAlamat extends StatefulWidget {
       {super.key,
       required this.namaPenerima,
       required this.notelp,
-      required this.provinsi,
+      
       required this.id,
-      required this.kota,
-      required this.kecamatan,
-      required this.desa,
+      
       required this.alamatlengkap,
       required this.kategoriAlamat});
   final String id;
   final String namaPenerima,
       notelp,
-      provinsi,
-      kota,
-      kecamatan,
-      desa,
+     
       alamatlengkap,
       kategoriAlamat;
 
@@ -74,10 +69,6 @@ class _pageDetailAlamatState extends State<pageDetailAlamat> {
     // TODO: implement initState
     _namapenerima = TextEditingController(text: widget.namaPenerima);
     _notelp = TextEditingController(text: widget.notelp);
-    _provinsi = TextEditingController(text: widget.provinsi);
-    _kota = TextEditingController(text: widget.kota);
-    _kecamatan = TextEditingController(text: widget.kecamatan);
-    _desa = TextEditingController(text: widget.desa);
     _alamatlengkap = TextEditingController(text: widget.alamatlengkap);
     _kategorialmat = TextEditingController(text: widget.kategoriAlamat);
 
@@ -150,122 +141,6 @@ class _pageDetailAlamatState extends State<pageDetailAlamat> {
                     decoration: InputDecoration(
                       hintText: "Contoh: 083xxx",
                       labelText: "No Telepon",
-                      labelStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      //  icon: Icon(Icons.apartment_rounded),
-                      border: OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.black)),
-
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: TextFormField(
-                    controller: _provinsi,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Provinsi kosong';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Contoh: Jawa Barat",
-                      labelText: "Provinsi",
-                      labelStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      //  icon: Icon(Icons.apartment_rounded),
-                      border: OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.black)),
-
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: TextFormField(
-                    controller: _kota,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'kota/kabupaten kosong';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Contoh: Kab. Bandung Barat/Kota Cimahi",
-                      labelText: "Kota/Kabupaten",
-                      labelStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      //  icon: Icon(Icons.apartment_rounded),
-                      border: OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.black)),
-
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: TextFormField(
-                    controller: _kecamatan,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'Kecamatan/Kelurahan kosong';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Contoh: Ngamprah",
-                      labelText: "Kelurahan/Kecamatan",
-                      labelStyle: TextStyle(
-                          fontSize: 20,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold),
-                      //  icon: Icon(Icons.apartment_rounded),
-                      border: OutlineInputBorder(
-                          borderRadius: new BorderRadius.circular(10.0),
-                          borderSide:
-                              BorderSide(width: 2, color: Colors.black)),
-
-                      filled: true,
-                      fillColor: Colors.white,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 20, right: 20, bottom: 20),
-                  child: TextFormField(
-                    controller: _desa,
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return 'desa kosong';
-                      }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      hintText: "Contoh: Margajaya",
-                      labelText: "Desa",
                       labelStyle: TextStyle(
                           fontSize: 20,
                           color: Colors.black,

@@ -122,7 +122,19 @@ class _detailmerchState extends State<detailmerch> {
                 
                 
                 ),
-                onTap: _beli,
+                onTap:() {
+                   Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => rincianmerch(
+                              id: widget.id,
+                              Asset: widget.Asset,
+                              Judul: widget.Judul,
+                              Menit: widget.Menit,
+                              
+                              //  jumlah: 1
+                            )));
+                },
               ),
           
             GestureDetector(

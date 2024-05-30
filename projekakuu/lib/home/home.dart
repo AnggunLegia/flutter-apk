@@ -31,7 +31,7 @@ class _pageHomeState extends State<pageHome> {
           child: Row(
             children: [
                Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: const EdgeInsets.only(left: 30),
                 child: Column(
                   children: [
                     IconButton(
@@ -53,7 +53,7 @@ class _pageHomeState extends State<pageHome> {
               ),
               
               Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: const EdgeInsets.only(left: 30),
                 child: Column(
                   children: [
                     IconButton(
@@ -75,29 +75,29 @@ class _pageHomeState extends State<pageHome> {
                 ),
               ),
              
+              // Padding(
+              //   padding: const EdgeInsets.only(left: 30),
+              //   child: Column(
+              //     children: [
+              //       IconButton(
+              //           onPressed: () {
+              //             Navigator.push(context,
+              //                 MaterialPageRoute(builder: (context) => pageMerch()));
+              //           },
+              //           icon: Icon(
+              //             Icons.message_outlined,
+              //             color: Color.fromRGBO(202, 31, 31, 1),
+              //             size: 30,
+              //           )),
+              //           Text("Chat Admin", 
+              //             style: TextStyle(
+              //               color: Color.fromRGBO(202, 31, 31, 1),
+              //             ),),
+              //     ],
+              //   ),
+              // ),
               Padding(
-                padding: const EdgeInsets.only(left: 15),
-                child: Column(
-                  children: [
-                    IconButton(
-                        onPressed: () {
-                          Navigator.push(context,
-                              MaterialPageRoute(builder: (context) => pageMerch()));
-                        },
-                        icon: Icon(
-                          Icons.message_outlined,
-                          color: Color.fromRGBO(202, 31, 31, 1),
-                          size: 30,
-                        )),
-                        Text("Chat Admin", 
-                          style: TextStyle(
-                            color: Color.fromRGBO(202, 31, 31, 1),
-                          ),),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 15),
+                padding: const EdgeInsets.only(left: 30),
                 child: Column(
                   children: [
                     IconButton(
@@ -119,7 +119,7 @@ class _pageHomeState extends State<pageHome> {
               ),
               Padding(
                 padding: const EdgeInsets.only(
-                  left: 10,
+                  left: 20,
                 ),
                 child: Column(
                   children: [

@@ -1,38 +1,65 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_2/pengiriman/alamatmerch2.dart';
+import 'package:flutter_application_2/pengiriman/alamatnav2.dart';
 import 'package:flutter_application_2/profile/profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:uuid/uuid.dart';
 
 import 'navAlamat.dart';
 
-class pageAlamat extends StatefulWidget {
-  const pageAlamat({super.key});
+class pageDetailAlamat2 extends StatefulWidget {
+  const pageDetailAlamat2(
+      {super.key,
+      required this.namaPenerima,
+      required this.notelp,
+      
+      required this.id,
+      
+      required this.alamatlengkap,
+      required this.kategoriAlamat, required this.Asset, required this.Judul, required this.Menit, required this.uid});
+  final String id;
+  final String namaPenerima,
+      notelp,
+     
+      alamatlengkap,
+      kategoriAlamat;
+      final String uid;
+  final String Asset, Judul, Menit;
 
   @override
-  State<pageAlamat> createState() => _pageAlamatState();
+  State<pageDetailAlamat2> createState() => _pageDetailAlamat2State();
 }
 
-class _pageAlamatState extends State<pageAlamat> {
+class _pageDetailAlamat2State extends State<pageDetailAlamat2> {
   final _formkey = GlobalKey<FormState>();
-  final TextEditingController _namapenerima = TextEditingController();
-  final TextEditingController _notelp = TextEditingController();
-  final TextEditingController _alamatlengkap = TextEditingController();
-  final TextEditingController _kategorialmat = TextEditingController();
+  TextEditingController _namapenerima = TextEditingController();
+  TextEditingController _notelp = TextEditingController();
+  
+  TextEditingController _alamatlengkap = TextEditingController();
+  TextEditingController _kategorialmat = TextEditingController();
 
   formalamat() async {
     try {
-      var uuid = Uuid();
-      String id = uuid.v4();
-      await FirebaseFirestore.instance.collection("alamat").doc(id).set({
-        "uid": id,
+      
+      await FirebaseFirestore.instance
+          .collection("alamat")
+          .doc(widget.id)
+          .update({
+        
         "nama penerima": _namapenerima.text,
         "notelp": _notelp.text,
+       
         "alamat lengkap": _alamatlengkap.text,
         "kategori alamat": _kategorialmat.text,
       });
       Navigator.push(
-          context, MaterialPageRoute(builder: (_) => pageNavAlamat()));
+          context, MaterialPageRoute(builder: (_) => pageNavAlamatRincian(
+           Asset: widget.Asset,
+            Judul: widget.Judul,
+            Menit: widget.Menit,
+            id: widget.id,
+          )));
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(e.toString())),
@@ -41,13 +68,23 @@ class _pageAlamatState extends State<pageAlamat> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    _namapenerima = TextEditingController(text: widget.namaPenerima);
+    _notelp = TextEditingController(text: widget.notelp);
+    _alamatlengkap = TextEditingController(text: widget.alamatlengkap);
+    _kategorialmat = TextEditingController(text: widget.kategoriAlamat);
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-          
           child: Text(
-            "Add Address",
+            "UPDATE ALAMAT",
             style: GoogleFonts.radioCanada(
                 textStyle: Theme.of(context).textTheme.displayLarge,
                 fontSize: 20,
@@ -122,15 +159,13 @@ class _pageAlamatState extends State<pageAlamat> {
                     ),
                   ),
                 ),
-             
-              
                 Padding(
                   padding:
                       const EdgeInsets.only(left: 20, right: 20, bottom: 10),
                   child: TextFormField(
                     controller: _alamatlengkap,
-                    maxLength: 200,
                     maxLines: 3,
+                    maxLength: 200,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Alamat Lengkap kosong';
@@ -194,6 +229,38 @@ class _pageAlamatState extends State<pageAlamat> {
                       borderRadius: BorderRadius.circular(10)),
                   child: TextButton(
                     onPressed: () {
+                      FirebaseFirestore.instance
+                          .collection('alamat')
+                          .doc(widget.id)
+                          .delete();
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => pageNavAlamatRincian(
+                              Asset: widget.Asset,
+                              Judul: widget.Judul,
+                              Menit: widget.Menit,
+                              id: widget.id,
+                              ))));
+                      //   Navigator.push(context, MaterialPageRoute(builder: (BuildContext context)=>pageHome()));
+                      //   _formkey.currentState!.validate();
+                    },
+                    child: Text(
+                      "HAPUS ALAMAT",
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                    ),
+                  ),
+                ),
+                Container(
+                  margin:
+                      EdgeInsets.only(top: 10, bottom: 10, left: 20, right: 20),
+                  height: 50,
+                  width: 365,
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(10)),
+                  child: TextButton(
+                    onPressed: () {
                       if (_formkey.currentState!.validate()) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -205,7 +272,7 @@ class _pageAlamatState extends State<pageAlamat> {
                       //   _formkey.currentState!.validate();
                     },
                     child: Text(
-                      "Add Address",
+                      "UPDATE ALAMAT",
                       style: TextStyle(fontSize: 20, color: Colors.white),
                     ),
                   ),
